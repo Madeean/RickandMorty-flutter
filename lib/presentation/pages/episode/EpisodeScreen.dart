@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rickandmortyapp/domain/episode/model/EpisodeDomainModel.dart';
+import 'package:rickandmortyapp/presentation/pages/episode/EpisodeController.dart';
 import 'package:rickandmortyapp/presentation/pages/episode/viewmodel/EpisodeViewModel.dart';
 import 'package:rickandmortyapp/presentation/themes/Colors.dart';
 import 'package:rickandmortyapp/presentation/widgets/InformationCard.dart';
@@ -16,14 +17,15 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 }
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
-  final TextEditingController _controller = TextEditingController();
+  late EpisodeController _controller;
 
   @override
   void initState() {
     super.initState();
-    // Trigger fetch pertama kali
+    _controller = ref.read(episodeControllerProvider);
+
     Future.microtask(() {
-      ref.read(episodeViewModelProvider.notifier).fetchEpisodes(_controller.text);
+      _controller.fetchAllEpisode();
     });
   }
 
@@ -43,11 +45,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
       child: Column(
         children: [
           TextField(
-            onEditingComplete: () {
-              final name = _controller.text.trim();
-              ref.read(episodeViewModelProvider.notifier).fetchEpisodes(name);
-            },
-            controller: _controller,
+            onChanged: _controller.onSearchChanged,
+            controller: _controller.searchController,
             decoration: InputDecoration(
               hintText: 'Search Episode',
               prefixIcon: const Icon(Icons.search),
@@ -57,13 +56,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide:
-                const BorderSide(color: CustomColors.biru, width: 2),
+                    const BorderSide(color: CustomColors.biru, width: 2),
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
           ),
           const SizedBox(height: 12),
-
           Expanded(
             child: _buildBody(state.episode),
           ),
@@ -86,7 +84,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           separatorBuilder: (_, __) => const SizedBox(height: 8),
           itemBuilder: (_, index) {
             final episode = data.results[index];
-            return InformationCard(episode: episode,);
+            return InformationCard(
+              episode: episode,
+            );
           },
         );
       },

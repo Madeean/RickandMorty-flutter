@@ -22,11 +22,9 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
         );
 
         if ((response.statusCode ?? 0) ~/ 100 == 2) {
-          // ✅ SUCCESS RESPONSE
           final json = response.data as Map<String, dynamic>;
           final episodeResponse = EpisodeResponse.fromJson(json);
 
-          // Isi message success secara manual atau default
           final domainModel = episodeResponse.toDomain().copyWith(
             message: 'Success Get All Episode',
           );

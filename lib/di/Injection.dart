@@ -8,11 +8,12 @@ import 'package:rickandmortyapp/domain/episode/EpisodeUseCaseImpl.dart';
 final sl = GetIt.instance;
 
 void setupDI() {
-
-  sl.registerLazySingleton(() => Dio(BaseOptions(baseUrl: 'https://rickandmortyapi.com/api/')));
+  sl.registerLazySingleton(
+      () => Dio(BaseOptions(baseUrl: 'https://rickandmortyapi.com/api/')));
 
   // Repository
-  sl.registerLazySingleton<EpisodeRepository>(() => EpisodeRepositoryImpl(sl()));
+  sl.registerLazySingleton<EpisodeRepository>(
+      () => EpisodeRepositoryImpl(sl()));
 
   // UseCase
   sl.registerLazySingleton<EpisodeUseCase>(

@@ -12,8 +12,6 @@ class EpisodeViewModel extends StateNotifier<EpisodeState> {
   void fetchEpisodes(String name) {
     state = state.copyWith(episode: const RequestState.loading());
 
-    state = state.copyWith(episode: const RequestState.loading());
-
     _useCase.getAllEpisode(name).listen((result) {
       state = state.copyWith(episode: result);
     });
