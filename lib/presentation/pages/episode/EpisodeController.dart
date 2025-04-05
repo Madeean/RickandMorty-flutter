@@ -39,5 +39,11 @@ class EpisodeController {
 
 final episodeControllerProvider = Provider<EpisodeController>((ref) {
   final viewModel = ref.read(episodeViewModelProvider.notifier);
-  return EpisodeController(viewModel);
+  final controller = EpisodeController(viewModel);
+
+  ref.onDispose(() {
+    controller.dispose();
+  });
+
+  return controller;
 });

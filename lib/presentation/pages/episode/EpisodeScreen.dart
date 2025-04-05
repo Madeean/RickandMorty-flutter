@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rickandmortyapp/domain/episode/model/EpisodeDomainModel.dart';
@@ -17,36 +15,26 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 }
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
-  late EpisodeController _controller;
-
   @override
   void initState() {
     super.initState();
-    _controller = ref.read(episodeControllerProvider);
-
     Future.microtask(() {
-      _controller.fetchAllEpisode();
+      ref.read(episodeControllerProvider).fetchAllEpisode();
     });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(episodeViewModelProvider);
-
+    final controller = ref.read(episodeControllerProvider);
     return Container(
       color: CustomColors.abuAbuMuda,
       padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
       child: Column(
         children: [
           TextField(
-            onChanged: _controller.onSearchChanged,
-            controller: _controller.searchController,
+            onChanged: controller.onSearchChanged,
+            controller: controller.searchController,
             decoration: InputDecoration(
               hintText: 'Search Episode',
               prefixIcon: const Icon(Icons.search),
@@ -84,9 +72,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           separatorBuilder: (_, __) => const SizedBox(height: 8),
           itemBuilder: (_, index) {
             final episode = data.results[index];
-            return InformationCard(
-              episode: episode,
-            );
+            return InformationCard(episode: episode);
           },
         );
       },
