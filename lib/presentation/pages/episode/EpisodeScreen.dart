@@ -77,7 +77,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           separatorBuilder: (_, __) => const SizedBox(height: 8),
           itemBuilder: (_, index) {
             final episode = data.results[index];
-            return InformationCard(episode: episode);
+            return InformationCard(
+              date: episode.airDate,
+              description: episode.episode,
+              title: episode.name,
+            );
           },
         );
       },

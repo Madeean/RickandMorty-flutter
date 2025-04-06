@@ -3,8 +3,10 @@ import 'package:rickandmortyapp/domain/episode/model/EpisodeDomainModel.dart';
 import 'package:rickandmortyapp/presentation/themes/Colors.dart';
 
 class InformationCard extends StatelessWidget {
-  final EpisodeDetailDomainModel episode;
-  const InformationCard({super.key, required this.episode});
+  final String title;
+  final String description;
+  final String date;
+  const InformationCard({super.key, required this.title, required this.description, required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class InformationCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              episode.name,
+              title,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
@@ -32,7 +34,7 @@ class InformationCard extends StatelessWidget {
               height: 8,
             ),
             Text(
-              episode.episode,
+              description,
               style: const TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
@@ -42,7 +44,7 @@ class InformationCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [Text(
-                  episode.airDate,
+                  date,
                   style: const TextStyle(
                     fontWeight: FontWeight.w300,
                     fontSize: 12,
@@ -57,7 +59,7 @@ class InformationCard extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    print(episode);
+                    print("test");
                   },
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
