@@ -8,7 +8,7 @@ class RequestState<T> with _$RequestState<T> {
   const factory RequestState.idle() = Idle<T>;
   const factory RequestState.loading() = Loading<T>;
   const factory RequestState.success(T data) = Success<T>;
-  const factory RequestState.error(String message) = ErrorState<T>;
+  const factory RequestState.error(T error) = ErrorState<T>;
 
   bool get isIdle => this is Idle<T>;
   bool get isLoading => this is Loading<T>;

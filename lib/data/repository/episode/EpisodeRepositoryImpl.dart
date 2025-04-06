@@ -1,14 +1,15 @@
+import 'package:dio/dio.dart';
+import 'package:rickandmortyapp/data/network/Network.dart';
 import 'package:rickandmortyapp/data/repository/episode/model/EpisodeResponse.dart';
 import 'package:rickandmortyapp/domain/episode/EpisodeRepository.dart';
 import 'package:rickandmortyapp/domain/episode/model/EpisodeDomainModel.dart';
 import 'package:rickandmortyapp/utils/RequestState.dart';
-import 'package:dio/dio.dart';
 import 'package:rxdart/rxdart.dart';
 
 class EpisodeRepositoryImpl implements EpisodeRepository {
-  final Dio _dio;
+  final Network network;
 
-  EpisodeRepositoryImpl(this._dio);
+  EpisodeRepositoryImpl(this.network);
 
   @override
   Stream<RequestState<EpisodeDomainModel>> getAllEpisode(String name) {
@@ -16,7 +17,7 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
       yield const RequestState.loading();
 
       try {
-        final response = await _dio.get(
+        final response = await network.dio.get(
           '/episode',
           queryParameters: {'name': name},
         );
@@ -26,20 +27,17 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
           final episodeResponse = EpisodeResponse.fromJson(json);
 
           final domainModel = episodeResponse.toDomain().copyWith(
-            message: 'Success Get All Episode',
-          );
+                message: 'Success Get All Episode',
+              );
 
           yield RequestState.success(domainModel);
         } else {
           final json = response.data as Map<String, dynamic>;
-
           final errorMessage = json['error'] ?? 'Terjadi kesalahan';
-          yield RequestState.success(
-            EpisodeDomainModel(
-              message: errorMessage,
-              results: [],
-            ),
-          );
+
+          final EpisodeResponse episodeResponse =
+              EpisodeResponse(message: errorMessage, results: []);
+          yield RequestState.error(episodeResponse.toDomain());
         }
       } catch (e) {
         String errorMessage = 'Terjadi kesalahan';
@@ -51,8 +49,10 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
         } else {
           errorMessage = e.toString();
         }
+        final EpisodeResponse episodeResponse =
+            EpisodeResponse(message: errorMessage, results: []);
 
-        yield RequestState.error(errorMessage);
+        yield RequestState.error(episodeResponse.toDomain());
       }
     });
   }

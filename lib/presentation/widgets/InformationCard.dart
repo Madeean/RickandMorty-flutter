@@ -23,7 +23,7 @@ class InformationCard extends StatelessWidget {
           children: [
             Text(
               episode.name,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
@@ -33,7 +33,7 @@ class InformationCard extends StatelessWidget {
             ),
             Text(
               episode.episode,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
               ),
@@ -43,7 +43,7 @@ class InformationCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [Text(
                   episode.airDate,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w300,
                     fontSize: 12,
                   ),

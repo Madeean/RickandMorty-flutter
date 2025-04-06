@@ -21,7 +21,7 @@ mixin _$RequestState<T> {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(T data) success,
-    required TResult Function(String message) error,
+    required TResult Function(T error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$RequestState<T> {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(T data)? success,
-    TResult? Function(String message)? error,
+    TResult? Function(T error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$RequestState<T> {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(T data)? success,
-    TResult Function(String message)? error,
+    TResult Function(T error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +127,7 @@ class _$IdleImpl<T> extends Idle<T> {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(T data) success,
-    required TResult Function(String message) error,
+    required TResult Function(T error) error,
   }) {
     return idle();
   }
@@ -138,7 +138,7 @@ class _$IdleImpl<T> extends Idle<T> {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(T data)? success,
-    TResult? Function(String message)? error,
+    TResult? Function(T error)? error,
   }) {
     return idle?.call();
   }
@@ -149,7 +149,7 @@ class _$IdleImpl<T> extends Idle<T> {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(T data)? success,
-    TResult Function(String message)? error,
+    TResult Function(T error)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -242,7 +242,7 @@ class _$LoadingImpl<T> extends Loading<T> {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(T data) success,
-    required TResult Function(String message) error,
+    required TResult Function(T error) error,
   }) {
     return loading();
   }
@@ -253,7 +253,7 @@ class _$LoadingImpl<T> extends Loading<T> {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(T data)? success,
-    TResult? Function(String message)? error,
+    TResult? Function(T error)? error,
   }) {
     return loading?.call();
   }
@@ -264,7 +264,7 @@ class _$LoadingImpl<T> extends Loading<T> {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(T data)? success,
-    TResult Function(String message)? error,
+    TResult Function(T error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -384,7 +384,7 @@ class _$SuccessImpl<T> extends Success<T> {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(T data) success,
-    required TResult Function(String message) error,
+    required TResult Function(T error) error,
   }) {
     return success(data);
   }
@@ -395,7 +395,7 @@ class _$SuccessImpl<T> extends Success<T> {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(T data)? success,
-    TResult? Function(String message)? error,
+    TResult? Function(T error)? error,
   }) {
     return success?.call(data);
   }
@@ -406,7 +406,7 @@ class _$SuccessImpl<T> extends Success<T> {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(T data)? success,
-    TResult Function(String message)? error,
+    TResult Function(T error)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -469,7 +469,7 @@ abstract class _$$ErrorStateImplCopyWith<T, $Res> {
           _$ErrorStateImpl<T> value, $Res Function(_$ErrorStateImpl<T>) then) =
       __$$ErrorStateImplCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({String message});
+  $Res call({T error});
 }
 
 /// @nodoc
@@ -483,13 +483,13 @@ class __$$ErrorStateImplCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
+    Object? error = freezed,
   }) {
     return _then(_$ErrorStateImpl<T>(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as T,
     ));
   }
 }
@@ -497,14 +497,14 @@ class __$$ErrorStateImplCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$ErrorStateImpl<T> extends ErrorState<T> {
-  const _$ErrorStateImpl(this.message) : super._();
+  const _$ErrorStateImpl(this.error) : super._();
 
   @override
-  final String message;
+  final T error;
 
   @override
   String toString() {
-    return 'RequestState<$T>.error(message: $message)';
+    return 'RequestState<$T>.error(error: $error)';
   }
 
   @override
@@ -512,11 +512,12 @@ class _$ErrorStateImpl<T> extends ErrorState<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorStateImpl<T> &&
-            (identical(other.message, message) || other.message == message));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -530,9 +531,9 @@ class _$ErrorStateImpl<T> extends ErrorState<T> {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(T data) success,
-    required TResult Function(String message) error,
+    required TResult Function(T error) error,
   }) {
-    return error(message);
+    return error(this.error);
   }
 
   @override
@@ -541,9 +542,9 @@ class _$ErrorStateImpl<T> extends ErrorState<T> {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(T data)? success,
-    TResult? Function(String message)? error,
+    TResult? Function(T error)? error,
   }) {
-    return error?.call(message);
+    return error?.call(this.error);
   }
 
   @override
@@ -552,11 +553,11 @@ class _$ErrorStateImpl<T> extends ErrorState<T> {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(T data)? success,
-    TResult Function(String message)? error,
+    TResult Function(T error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(message);
+      return error(this.error);
     }
     return orElse();
   }
@@ -600,10 +601,10 @@ class _$ErrorStateImpl<T> extends ErrorState<T> {
 }
 
 abstract class ErrorState<T> extends RequestState<T> {
-  const factory ErrorState(final String message) = _$ErrorStateImpl<T>;
+  const factory ErrorState(final T error) = _$ErrorStateImpl<T>;
   const ErrorState._() : super._();
 
-  String get message;
+  T get error;
   @JsonKey(ignore: true)
   _$$ErrorStateImplCopyWith<T, _$ErrorStateImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;

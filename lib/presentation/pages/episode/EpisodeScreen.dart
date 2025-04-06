@@ -24,7 +24,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
 
     if (controller.shouldFetchAllEpisode()) {
       Future.microtask(() {
-        print("hit");
         controller.fetchAllEpisode();
       });
     }
@@ -82,7 +81,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           },
         );
       },
-      error: (msg) => Center(child: Text("Error: $msg")),
+      error: (msg) => Center(child: Text("Error: ${msg.message}")),
     );
   }
 }
