@@ -104,8 +104,8 @@ class __$$IdleImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$IdleImpl<T> implements Idle<T> {
-  const _$IdleImpl();
+class _$IdleImpl<T> extends Idle<T> {
+  const _$IdleImpl() : super._();
 
   @override
   String toString() {
@@ -196,8 +196,9 @@ class _$IdleImpl<T> implements Idle<T> {
   }
 }
 
-abstract class Idle<T> implements RequestState<T> {
+abstract class Idle<T> extends RequestState<T> {
   const factory Idle() = _$IdleImpl<T>;
+  const Idle._() : super._();
 }
 
 /// @nodoc
@@ -218,8 +219,8 @@ class __$$LoadingImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$LoadingImpl<T> implements Loading<T> {
-  const _$LoadingImpl();
+class _$LoadingImpl<T> extends Loading<T> {
+  const _$LoadingImpl() : super._();
 
   @override
   String toString() {
@@ -310,8 +311,9 @@ class _$LoadingImpl<T> implements Loading<T> {
   }
 }
 
-abstract class Loading<T> implements RequestState<T> {
+abstract class Loading<T> extends RequestState<T> {
   const factory Loading() = _$LoadingImpl<T>;
+  const Loading._() : super._();
 }
 
 /// @nodoc
@@ -347,8 +349,8 @@ class __$$SuccessImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$SuccessImpl<T> implements Success<T> {
-  const _$SuccessImpl(this.data);
+class _$SuccessImpl<T> extends Success<T> {
+  const _$SuccessImpl(this.data) : super._();
 
   @override
   final T data;
@@ -451,8 +453,9 @@ class _$SuccessImpl<T> implements Success<T> {
   }
 }
 
-abstract class Success<T> implements RequestState<T> {
+abstract class Success<T> extends RequestState<T> {
   const factory Success(final T data) = _$SuccessImpl<T>;
+  const Success._() : super._();
 
   T get data;
   @JsonKey(ignore: true)
@@ -493,8 +496,8 @@ class __$$ErrorStateImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$ErrorStateImpl<T> implements ErrorState<T> {
-  const _$ErrorStateImpl(this.message);
+class _$ErrorStateImpl<T> extends ErrorState<T> {
+  const _$ErrorStateImpl(this.message) : super._();
 
   @override
   final String message;
@@ -596,8 +599,9 @@ class _$ErrorStateImpl<T> implements ErrorState<T> {
   }
 }
 
-abstract class ErrorState<T> implements RequestState<T> {
+abstract class ErrorState<T> extends RequestState<T> {
   const factory ErrorState(final String message) = _$ErrorStateImpl<T>;
+  const ErrorState._() : super._();
 
   String get message;
   @JsonKey(ignore: true)

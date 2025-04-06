@@ -15,18 +15,24 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 }
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
+  late EpisodeController controller;
+
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      ref.read(episodeControllerProvider).fetchAllEpisode();
-    });
+    controller = ref.read(episodeControllerProvider);
+
+    if (controller.shouldFetchAllEpisode()) {
+      Future.microtask(() {
+        print("hit");
+        controller.fetchAllEpisode();
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(episodeViewModelProvider);
-    final controller = ref.read(episodeControllerProvider);
     return Container(
       color: CustomColors.abuAbuMuda,
       padding: const EdgeInsets.only(right: 16, left: 16, top: 16),

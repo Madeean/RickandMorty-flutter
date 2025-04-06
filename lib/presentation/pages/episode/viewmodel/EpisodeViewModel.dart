@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rickandmortyapp/di/Injection.dart';
 import 'package:rickandmortyapp/domain/episode/EpisodeUseCase.dart';
+import 'package:rickandmortyapp/domain/episode/model/EpisodeDomainModel.dart';
 import 'package:rickandmortyapp/presentation/pages/episode/viewmodel/state/EpisodeState.dart';
 import 'package:rickandmortyapp/utils/RequestState.dart';
 
@@ -15,6 +16,10 @@ class EpisodeViewModel extends StateNotifier<EpisodeState> {
     _useCase.getAllEpisode(name).listen((result) {
       state = state.copyWith(episode: result);
     });
+  }
+
+  RequestState<EpisodeDomainModel> getStateEpisode() {
+    return state.episode;
   }
 }
 

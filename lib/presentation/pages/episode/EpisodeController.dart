@@ -15,7 +15,7 @@ class EpisodeController {
 
   EpisodeController(this.viewModel) {
     _subscription = _searchSubject
-        .debounceTime(const Duration(milliseconds: 200))
+        .debounceTime(const Duration(milliseconds: 300))
         .distinct()
         .listen((keyword) {
       viewModel.fetchEpisodes(keyword.trim());
@@ -34,6 +34,14 @@ class EpisodeController {
 
   void fetchAllEpisode() {
     viewModel.fetchEpisodes(searchController.text.trim());
+  }
+
+  bool shouldFetchAllEpisode() {
+    if (viewModel.getStateEpisode().isIdle ||
+        viewModel.getStateEpisode().isLoading) {
+      return true;
+    }
+    return false;
   }
 }
 
