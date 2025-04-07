@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:rickandmortyapp/presentation/navigation/RoutePage.dart';
 import 'package:rickandmortyapp/presentation/themes/Colors.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
-  static final items = [
-    {
-      'icon': Icons.heart_broken,
-      'title': 'Favorite List',
-      'onTap': () {
-        print('Tapped Help');
-      },
-    },
-    {
-      'icon': Icons.warning,
-      'title': 'About this application',
-      'onTap': () {
-        print('Tapped About this application');
-      },
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final items = [
+      {
+        'icon': Icons.heart_broken,
+        'title': 'Favorite List',
+        'onTap': () {
+          print('Tapped Help');
+        },
+      },
+      {
+        'icon': Icons.warning,
+        'title': 'About this application',
+        'onTap': () {
+          Navigator.pushNamed(context, RoutePage.about.path);
+        },
+      },
+    ];
+
     return ListView.separated(
       separatorBuilder: (_, __) => const Divider(
         height: 1,

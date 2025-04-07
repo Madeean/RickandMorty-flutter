@@ -5,6 +5,7 @@ final RouteObserver<ModalRoute> routeObserver = RouteObserver<ModalRoute>();
 enum RoutePage {
   splash,
   home,
+  about
 }
 
 extension RoutePageExtension on RoutePage {
@@ -14,6 +15,8 @@ extension RoutePageExtension on RoutePage {
         return '/';
       case RoutePage.home:
         return '/home';
+      case RoutePage.about:
+        return '/about';
     }
   }
 }
