@@ -46,7 +46,7 @@ class EpisodeViewModel extends StateNotifier<EpisodeState> {
               ),
             );
 
-            _isFetching = false; // <-- pindahkan ke sini
+            _isFetching = false;
           },
           error: (e) {
             final oldResults = isLoadMore && state.episode is Success<EpisodeDomainModel>
@@ -56,10 +56,7 @@ class EpisodeViewModel extends StateNotifier<EpisodeState> {
             if (oldResults.isEmpty) {
               state = state.copyWith(episode: RequestState.error(e));
             } else {
-              // Kalau error tapi masih ada data sebelumnya (misal: 404 on loadMore)
-              // berarti data sudah habis
               _hasMore = false;
-              // Tidak update state karena data sebelumnya masih valid
             }
 
             _isFetching = false;

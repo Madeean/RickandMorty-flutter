@@ -1,11 +1,14 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rickandmortyapp/presentation/pages/character/viewmodel/CharacterViewModel.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CharacterController {
   final CharacterViewModel viewModel;
+
+  late ScrollController scrollController;
 
   // final TextEditingController searchController = TextEditingController();
   // final _searchSubject = BehaviorSubject<String>();
@@ -21,7 +24,19 @@ class CharacterController {
     viewModel.fetchCharacters('', '', "", '', '');
   }
 
+  void initScrollController() {
+    scrollController = ScrollController()..addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (scrollController.position.pixels >=
+        scrollController.position.maxScrollExtent - 500) {
+      viewModel.loadMore('','','','','');
+    }
+  }
+
   void dispose() {
+    scrollController.dispose();
     // searchController.dispose();
     // _subscription.cancel();
     // _searchSubject.close();
@@ -38,6 +53,8 @@ class CharacterController {
     }
     return false;
   }
+
+  ScrollController get scrollC => scrollController;
 }
 
 final episodeControllerProvider = Provider<CharacterController>((ref) {

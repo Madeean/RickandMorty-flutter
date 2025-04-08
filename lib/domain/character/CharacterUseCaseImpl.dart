@@ -10,7 +10,7 @@ class CharacterUseCaseImpl implements CharacterUseCase {
 
   @override
   Stream<RequestState<CharacterDomainModel>> getAllCharacter(
-      String name, String status, String species, String type, String gender) {
-    return repository.getAllCharacter(name, status, species, type, gender);
+      String name, String status, String species, String type, String gender, int page) {
+    return repository.getAllCharacter(name, status, species, type, gender, page);
   }
 }

@@ -12,14 +12,15 @@ class CharacterRepositoryImpl implements CharacterRepository {
 
   @override
   Stream<RequestState<CharacterDomainModel>> getAllCharacter(
-      String name, String status, String species, String type, String gender) {
+      String name, String status, String species, String type, String gender, int page) {
     return apiRequest<CharacterResponse, CharacterDomainModel>(
       request: () => network.dio.get('/character', queryParameters: {
         'name': name,
         'status': status,
         'species': species,
         'type': type,
-        'gender': gender
+        'gender': gender,
+        'page': page
       }),
       fromJson: (json) => CharacterResponse.fromJson(json),
       toDomain: (res) => res.toDomain(),

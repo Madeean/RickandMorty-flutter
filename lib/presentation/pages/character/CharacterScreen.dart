@@ -21,6 +21,7 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
   void initState() {
     super.initState();
     controller = ref.read(episodeControllerProvider);
+    controller.initScrollController();
 
     if (controller.shouldFetchAllCharacter()) {
       Future.microtask(() {
@@ -62,7 +63,12 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
           ),
           const SizedBox(height: 12),
           Expanded(
-            child: _buildBody(state.character),
+            child: RefreshIndicator(
+              onRefresh: () async {
+                controller.fetchAllCharacter();
+              },
+              child: _buildBody(state.character),
+            ),
           ),
         ],
       ),
@@ -119,6 +125,7 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
         }
 
         return GridView.builder(
+          controller: controller.scrollC,
           padding: const EdgeInsets.only(bottom: 12),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -126,10 +133,25 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
             mainAxisSpacing: 15,
             childAspectRatio: 0.75,
           ),
-          itemCount: data.results.length,
+          itemCount: data.results.length + 1,
           itemBuilder: (context, index) {
-            final character = data.results[index];
-            return CharacterCard(character: character,);
+
+            if (index < data.results.length) {
+              final character = data.results[index];
+              return CharacterCard(
+                character: character,
+              );
+            } else {
+              final vm = ref.read(characterViewModelProvider.notifier);
+              if (vm.hasMore && vm.isFetching) {
+                return const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  child: Center(child: CircularProgressIndicator()),
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            }
           },
         );
       },
