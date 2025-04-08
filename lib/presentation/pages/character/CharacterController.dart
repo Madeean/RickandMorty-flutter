@@ -10,7 +10,7 @@ class CharacterController {
 
   late ScrollController scrollController;
 
-  // final TextEditingController searchController = TextEditingController();
+  final TextEditingController nameTextController = TextEditingController();
   // final _searchSubject = BehaviorSubject<String>();
   // late StreamSubscription _subscription;
 
@@ -21,7 +21,7 @@ class CharacterController {
   // }
 
   void fetchAllCharacter() {
-    viewModel.fetchCharacters('', '', "", '', '');
+    viewModel.fetchCharacters(nameTextController.text.trim(), '', "", '', '');
   }
 
   void initScrollController() {
@@ -31,15 +31,20 @@ class CharacterController {
   void _onScroll() {
     if (scrollController.position.pixels >=
         scrollController.position.maxScrollExtent - 500) {
-      viewModel.loadMore('','','','','');
+      viewModel.loadMore(nameTextController.text.trim(),'','','','');
     }
   }
 
   void dispose() {
     scrollController.dispose();
+    nameTextController.dispose();
     // searchController.dispose();
     // _subscription.cancel();
     // _searchSubject.close();
+  }
+
+  void resetController() {
+    nameTextController.clear();
   }
 
   bool shouldFetchAllCharacter() {
@@ -55,6 +60,7 @@ class CharacterController {
   }
 
   ScrollController get scrollC => scrollController;
+  TextEditingController get nameTextC => nameTextController;
 }
 
 final episodeControllerProvider = Provider<CharacterController>((ref) {

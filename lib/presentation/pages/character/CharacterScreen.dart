@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rickandmortyapp/domain/character/model/CharacterDomainModel.dart';
@@ -83,6 +85,8 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
 
   void _showBottomSheet(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: CustomColors.white,
+      enableDrag: true,
       useSafeArea: true,
       context: context,
       shape: const RoundedRectangleBorder(
@@ -93,7 +97,7 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
         return DraggableScrollableSheet(
           initialChildSize: 0.5,
           minChildSize: 0.5,
-          maxChildSize: 1.0,
+          maxChildSize: 0.95,
           expand: false,
           builder: (context, scrollController) {
             return Container(
@@ -102,17 +106,79 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
                 color: Colors.white,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),
-              child: ListView(
+              child: SingleChildScrollView(
                 controller: scrollController,
-                children: const [
-                  Text(
-                    "Hai dari Bottom Sheet",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 16),
-                  Text("Scroll ke atas untuk memperluas"),
-                  SizedBox(height: 600), // biar bisa di-scroll
-                ],
+                child: Column(
+                  children: [
+                    TextField(
+                      controller: controller.nameTextC,
+                      decoration: InputDecoration(
+                        hintText: 'Search Name',
+                        prefixIcon: const Icon(Icons.search),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: CustomColors.hitam),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                          const BorderSide(color: CustomColors.biru, width: 2),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: CustomColors.biru,
+                          padding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        onPressed: () {
+                          controller.fetchAllCharacter();
+                          Navigator.pop(context);
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 12),
+                          child: Text(
+                            "Search Character",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                                color: CustomColors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: CustomColors.abuAbuTua,
+                          padding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        onPressed: () {
+                          controller.resetController();
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 12),
+                          child: Text(
+                            "Clear",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                                color: CustomColors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ),
             );
           },
