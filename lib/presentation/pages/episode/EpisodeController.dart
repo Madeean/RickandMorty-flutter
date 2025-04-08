@@ -10,6 +10,8 @@ class EpisodeController {
   final EpisodeViewModel viewModel;
 
   final TextEditingController searchController = TextEditingController();
+  late ScrollController scrollController;
+
   final _searchSubject = BehaviorSubject<String>();
   late StreamSubscription _subscription;
 
@@ -22,12 +24,24 @@ class EpisodeController {
     });
   }
 
+  void initScrollController() {
+    scrollController = ScrollController()..addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (scrollController.position.pixels >=
+        scrollController.position.maxScrollExtent - 300) {
+      viewModel.loadMore(searchController.text.trim());
+    }
+  }
+
   void onSearchChanged(String value) {
     _searchSubject.add(value);
   }
 
   void dispose() {
     searchController.dispose();
+    scrollController.dispose();
     _subscription.cancel();
     _searchSubject.close();
   }
@@ -43,6 +57,8 @@ class EpisodeController {
     }
     return false;
   }
+
+  ScrollController get scrollC => scrollController;
 }
 
 final episodeControllerProvider = Provider<EpisodeController>((ref) {

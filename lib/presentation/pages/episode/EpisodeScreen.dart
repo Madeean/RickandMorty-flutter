@@ -16,31 +16,17 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   late EpisodeController controller;
-  late ScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
     controller = ref.read(episodeControllerProvider);
-    scrollController = ScrollController()..addListener(_onScroll);
+    controller.initScrollController();
 
     if (controller.shouldFetchAllEpisode()) {
       Future.microtask(() {
         controller.fetchAllEpisode();
       });
-    }
-  }
-
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
-  }
-
-  void _onScroll() {
-    if (scrollController.position.pixels >=
-        scrollController.position.maxScrollExtent - 300) {
-      controller.viewModel.loadMore(controller.searchController.text.trim());
     }
   }
 
@@ -92,7 +78,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
         }
 
         return ListView.separated(
-          controller: scrollController,
+          controller: controller.scrollC,
           itemCount: data.results.length + 1,
           separatorBuilder: (_, __) => const SizedBox(height: 8),
           itemBuilder: (_, index) {
