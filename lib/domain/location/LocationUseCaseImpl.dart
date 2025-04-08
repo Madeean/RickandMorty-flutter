@@ -9,8 +9,8 @@ class LocationUseCaseImpl implements LocationUseCase {
   LocationUseCaseImpl(this.repository);
 
   @override
-  Stream<RequestState<LocationDomainModel>> getAllLocation(String name, String type, String dimension) {
-    return repository.getAllLocation(name, type, dimension);
+  Stream<RequestState<LocationDomainModel>> getAllLocation(String name, String type, String dimension, int page) {
+    return repository.getAllLocation(name, type, dimension, page);
   }
 
 }

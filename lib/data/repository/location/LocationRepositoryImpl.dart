@@ -12,12 +12,13 @@ class LocationRepositoryImpl implements LocationRepository {
 
   @override
   Stream<RequestState<LocationDomainModel>> getAllLocation(
-      String name, String type, String dimension) {
+      String name, String type, String dimension, int page) {
     return apiRequest<LocationResponse, LocationDomainModel>(
       request: () => network.dio.get('/location', queryParameters: {
         'name': name,
         'type': type,
         'dimension': dimension,
+        'page': page
       }),
       fromJson: (json) => LocationResponse.fromJson(json),
       toDomain: (res) => res.toDomain(),

@@ -1,8 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rickandmortyapp/presentation/pages/location/viewmodel/LocationViewModel.dart';
 
 class LocationController {
   final LocationViewModel viewModel;
+
+  late ScrollController scrollController;
 
   LocationController(this.viewModel);
 
@@ -10,7 +13,9 @@ class LocationController {
     viewModel.fetchLocations('','','');
   }
 
-  void dispose() {}
+  void dispose() {
+    scrollController.dispose();
+  }
 
   bool shouldFetchAllLocation() {
     if (viewModel
@@ -23,6 +28,19 @@ class LocationController {
     }
     return false;
   }
+
+  void initScrollController() {
+    scrollController = ScrollController()..addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (scrollController.position.pixels >=
+        scrollController.position.maxScrollExtent - 300) {
+      viewModel.loadMore('','','');
+    }
+  }
+
+  ScrollController get scrollC => scrollController;
 }
 
 final locationControllerProvider = Provider<LocationController>((ref) {

@@ -21,12 +21,19 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
   void initState() {
     super.initState();
     controller = ref.read(locationControllerProvider);
+    controller.initScrollController();
 
     if (controller.shouldFetchAllLocation()) {
       Future.microtask(() {
         controller.fetchAllLocation();
       });
     }
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -62,7 +69,12 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
           ),
           const SizedBox(height: 12),
           Expanded(
-            child: _buildBody(state.location),
+            child: RefreshIndicator(
+              onRefresh: () async {
+                controller.fetchAllLocation();
+              },
+              child: _buildBody(state.location),
+            ),
           ),
         ],
       ),
@@ -79,15 +91,28 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
         }
 
         return ListView.separated(
-          itemCount: data.results.length,
+          controller: controller.scrollC,
+          itemCount: data.results.length + 1,
           separatorBuilder: (_, __) => const SizedBox(height: 8),
           itemBuilder: (_, index) {
-            final location = data.results[index];
-            return InformationCard(
-              title: location.name,
-              description: location.dimension,
-              date: location.type,
-            );
+            if (index < data.results.length) {
+              final location = data.results[index];
+              return InformationCard(
+                title: location.name,
+                description: location.dimension,
+                date: location.type,
+              );
+            } else {
+              final vm = ref.read(locationViewModelProvider.notifier);
+              if (vm.hasMore && vm.isFetching) {
+                return const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  child: Center(child: CircularProgressIndicator()),
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            }
           },
         );
       },

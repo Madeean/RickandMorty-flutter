@@ -31,6 +31,12 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final state = ref.watch(characterViewModelProvider);
     return Container(
