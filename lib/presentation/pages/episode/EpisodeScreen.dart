@@ -16,16 +16,31 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   late EpisodeController controller;
+  late ScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
     controller = ref.read(episodeControllerProvider);
+    scrollController = ScrollController()..addListener(_onScroll);
 
     if (controller.shouldFetchAllEpisode()) {
       Future.microtask(() {
         controller.fetchAllEpisode();
       });
+    }
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (scrollController.position.pixels >=
+        scrollController.position.maxScrollExtent - 300) {
+      controller.viewModel.loadMore(controller.searchController.text.trim());
     }
   }
 
@@ -56,7 +71,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           ),
           const SizedBox(height: 12),
           Expanded(
-            child: _buildBody(state.episode),
+            child: RefreshIndicator(
+                onRefresh: () async {
+                  controller.fetchAllEpisode();
+                },
+                child: _buildBody(state.episode)),
           ),
         ],
       ),
@@ -73,15 +92,28 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
         }
 
         return ListView.separated(
-          itemCount: data.results.length,
+          controller: scrollController,
+          itemCount: data.results.length + 1,
           separatorBuilder: (_, __) => const SizedBox(height: 8),
           itemBuilder: (_, index) {
-            final episode = data.results[index];
-            return InformationCard(
-              date: episode.airDate,
-              description: episode.episode,
-              title: episode.name,
-            );
+            if (index < data.results.length) {
+              final episode = data.results[index];
+              return InformationCard(
+                date: episode.airDate,
+                description: episode.episode,
+                title: episode.name,
+              );
+            } else {
+              final vm = ref.read(episodeViewModelProvider.notifier);
+              if (vm.hasMore && vm.isFetching) {
+                return const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  child: Center(child: CircularProgressIndicator()),
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            }
           },
         );
       },

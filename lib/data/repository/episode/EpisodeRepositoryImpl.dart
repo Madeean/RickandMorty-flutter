@@ -11,10 +11,11 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
   EpisodeRepositoryImpl(this.network);
 
   @override
-  Stream<RequestState<EpisodeDomainModel>> getAllEpisode(String name) {
+  Stream<RequestState<EpisodeDomainModel>> getAllEpisode(String name, int page) {
+    print("hit api  $page}");
     return apiRequest<EpisodeResponse, EpisodeDomainModel>(
       request: () =>
-          network.dio.get('/episode', queryParameters: {'name': name}),
+          network.dio.get('/episode', queryParameters: {'name': name, 'page': page}),
       fromJson: (json) => EpisodeResponse.fromJson(json),
       toDomain: (res) => res.toDomain(),
       copyWithSuccessMessage: (domain) =>
