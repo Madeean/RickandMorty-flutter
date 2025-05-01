@@ -23,46 +23,49 @@ class EpisodeViewModel extends StateNotifier<EpisodeState> {
       state = state.copyWith(episode: const RequestState.loading());
     }
 
-    print("fetchEpisodes | page: $_currentPage | isLoadMore: $isLoadMore | isFetching: $_isFetching | hasMore: $_hasMore");
-
     _useCase.getAllEpisode(name, _currentPage).listen((result) {
       result.when(
-          success: (data) {
-            final oldResults = isLoadMore && state.episode is Success<EpisodeDomainModel>
-                ? (state.episode as Success<EpisodeDomainModel>).data.results
-                : [];
+        success: (data) {
+          final oldResults =
+              isLoadMore && state.episode is Success<EpisodeDomainModel>
+                  ? (state.episode as Success<EpisodeDomainModel>).data.results
+                  : [];
 
-            final List<EpisodeDetailDomainModel> combinedResults = [...oldResults, ...data.results];
+          final List<EpisodeDetailDomainModel> combinedResults = [
+            ...oldResults,
+            ...data.results
+          ];
 
-            if (data.results.isEmpty) {
-              _hasMore = false;
-            } else {
-              _currentPage++;
-            }
+          const pageSize = 20;
+          _hasMore = data.results.isNotEmpty && data.results.length == pageSize;
+          if (_hasMore) {
+            _currentPage++;
+          }
 
-            state = state.copyWith(
-              episode: RequestState.success(
-                data.copyWith(results: combinedResults),
-              ),
-            );
+          state = state.copyWith(
+            episode: RequestState.success(
+              data.copyWith(results: combinedResults),
+            ),
+          );
 
-            _isFetching = false;
-          },
-          error: (e) {
-            final oldResults = isLoadMore && state.episode is Success<EpisodeDomainModel>
-                ? (state.episode as Success<EpisodeDomainModel>).data.results
-                : [];
+          _isFetching = false;
+        },
+        error: (e) {
+          final oldResults =
+              isLoadMore && state.episode is Success<EpisodeDomainModel>
+                  ? (state.episode as Success<EpisodeDomainModel>).data.results
+                  : [];
 
-            if (oldResults.isEmpty) {
-              state = state.copyWith(episode: RequestState.error(e));
-            } else {
-              _hasMore = false;
-            }
+          if (oldResults.isEmpty) {
+            state = state.copyWith(episode: RequestState.error(e));
+          } else {
+            _hasMore = false;
+          }
 
-            _isFetching = false;
-          },
-          loading: () {},
-          idle: () {}
+          _isFetching = false;
+        },
+        loading: () {},
+        idle: () {},
       );
     });
   }
@@ -84,11 +87,12 @@ class EpisodeViewModel extends StateNotifier<EpisodeState> {
   }
 
   bool get hasMore => _hasMore;
+
   bool get isFetching => _isFetching;
 }
 
 final episodeViewModelProvider =
-StateNotifierProvider<EpisodeViewModel, EpisodeState>((ref) {
+    StateNotifierProvider<EpisodeViewModel, EpisodeState>((ref) {
   final useCase = sl<EpisodeUseCase>();
   return EpisodeViewModel(useCase);
 });

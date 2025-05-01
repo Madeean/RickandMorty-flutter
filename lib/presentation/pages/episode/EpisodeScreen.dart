@@ -15,24 +15,16 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 }
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
-  late EpisodeController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = ref.read(episodeControllerProvider);
-    controller.initScrollController();
-
-    if (controller.shouldFetchAllEpisode()) {
-      Future.microtask(() {
-        controller.fetchAllEpisode();
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(episodeViewModelProvider);
+    final controllerState = ref.watch(episodeControllerProvider);
+    final controller = ref.watch(episodeControllerProvider.notifier);
+
+    final dataEpisodeState = controllerState.dataEpisodeState;
+    final isFetching = controllerState.isFetching;
+    final hasMore = controllerState.hasMore;
+
     return Container(
       color: CustomColors.abuAbuMuda,
       padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
@@ -61,14 +53,16 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                 onRefresh: () async {
                   controller.fetchAllEpisode();
                 },
-                child: _buildBody(state.episode)),
+                child: _buildBody(
+                    dataEpisodeState, controller, isFetching, hasMore)),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildBody(RequestState<EpisodeDomainModel> state) {
+  Widget _buildBody(RequestState<EpisodeDomainModel> state,
+      EpisodeController controller, bool isFetching, bool hasMore) {
     return state.when(
       idle: () => const Center(child: Text("Silakan cari episode")),
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -79,7 +73,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
 
         return ListView.separated(
           controller: controller.scrollC,
-          itemCount: data.results.length + 1,
+          itemCount: data.results.length ,
           separatorBuilder: (_, __) => const SizedBox(height: 8),
           itemBuilder: (_, index) {
             if (index < data.results.length) {
@@ -90,15 +84,10 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                 title: episode.name,
               );
             } else {
-              final vm = ref.read(episodeViewModelProvider.notifier);
-              if (vm.hasMore && vm.isFetching) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  child: Center(child: CircularProgressIndicator()),
-                );
-              } else {
-                return const SizedBox.shrink();
-              }
+              return const Padding(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                child: Center(child: CircularProgressIndicator()),
+              );
             }
           },
         );
