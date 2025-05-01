@@ -40,9 +40,9 @@ class CharacterViewModel extends StateNotifier<CharacterState> {
             ...data.results
           ];
 
-          if (data.results.isEmpty) {
-            _hasMore = false;
-          } else {
+          const pageSize = 20;
+          _hasMore = data.results.isNotEmpty && data.results.length == pageSize;
+          if (_hasMore) {
             _currentPage++;
           }
 

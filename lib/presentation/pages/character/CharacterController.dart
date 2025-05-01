@@ -1,24 +1,72 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rickandmortyapp/presentation/pages/character/viewmodel/CharacterViewModel.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:rickandmortyapp/presentation/pages/character/viewmodel/state/CharacterState.dart';
 
-class CharacterController {
+import '../../../domain/character/model/CharacterDomainModel.dart';
+import '../../../utils/RequestState.dart';
+
+class CharacterControllerState {
+  final RequestState<CharacterDomainModel> dataCharacterState;
+  final bool isFetching;
+  final bool hasMore;
+
+  CharacterControllerState({
+    required this.dataCharacterState,
+    required this.isFetching,
+    required this.hasMore,
+  });
+
+  factory CharacterControllerState.initial() {
+    return CharacterControllerState(
+      dataCharacterState: const RequestState.idle(),
+      isFetching: false,
+      hasMore: true,
+    );
+  }
+
+  CharacterControllerState copyWith({
+    RequestState<CharacterDomainModel>? dataCharacterState,
+    bool? isFetching,
+    bool? hasMore,
+  }) {
+    return CharacterControllerState(
+      dataCharacterState: dataCharacterState ?? this.dataCharacterState,
+      isFetching: isFetching ?? this.isFetching,
+      hasMore: hasMore ?? this.hasMore,
+    );
+  }
+}
+
+class CharacterController extends StateNotifier<CharacterControllerState> {
+  final Ref ref;
   final CharacterViewModel viewModel;
-
-  late ScrollController scrollController;
-
   final TextEditingController nameTextController = TextEditingController();
-  // final _searchSubject = BehaviorSubject<String>();
-  // late StreamSubscription _subscription;
 
-  CharacterController(this.viewModel);
+  late final ScrollController scrollController;
 
-  // void onSearchChanged(String value) {
-  //   _searchSubject.add(value);
-  // }
+  CharacterController(this.ref, this.viewModel)
+      : super(CharacterControllerState.initial()) {
+    initScrollController();
+
+    Future.microtask(() {
+      if (shouldFetchAllCharacter()) {
+        fetchAllCharacter();
+      }
+    });
+
+    ref.listen<CharacterState>(characterViewModelProvider, (prev, next) {
+      _syncState();
+    });
+  }
+
+  void _syncState() {
+    state = state.copyWith(
+      dataCharacterState: viewModel.getStateCharacter(),
+      isFetching: viewModel.isFetching,
+      hasMore: viewModel.hasMore,
+    );
+  }
 
   void fetchAllCharacter() {
     viewModel.fetchCharacters(nameTextController.text.trim(), '', "", '', '');
@@ -31,16 +79,16 @@ class CharacterController {
   void _onScroll() {
     if (scrollController.position.pixels >=
         scrollController.position.maxScrollExtent - 500) {
-      viewModel.loadMore(nameTextController.text.trim(),'','','','');
+      if (!state.hasMore) return;
+      viewModel.loadMore(nameTextController.text.trim(), '', '', '', '');
     }
   }
 
+  @override
   void dispose() {
     scrollController.dispose();
     nameTextController.dispose();
-    // searchController.dispose();
-    // _subscription.cancel();
-    // _searchSubject.close();
+    super.dispose();
   }
 
   void resetController() {
@@ -48,24 +96,19 @@ class CharacterController {
   }
 
   bool shouldFetchAllCharacter() {
-    if (viewModel
-        .getStateCharacter()
-        .isIdle ||
-        viewModel
-            .getStateCharacter()
-            .isLoading) {
-      return true;
-    }
-    return false;
+    final stateCharacter = viewModel.getStateCharacter();
+    return stateCharacter.isIdle || stateCharacter.isLoading;
   }
 
   ScrollController get scrollC => scrollController;
+
   TextEditingController get nameTextC => nameTextController;
 }
 
-final episodeControllerProvider = Provider<CharacterController>((ref) {
+final characterControllerProvider =
+    StateNotifierProvider<CharacterController, CharacterControllerState>((ref) {
   final viewModel = ref.read(characterViewModelProvider.notifier);
-  final controller = CharacterController(viewModel);
+  final controller = CharacterController(ref, viewModel);
 
   ref.onDispose(() {
     controller.dispose();

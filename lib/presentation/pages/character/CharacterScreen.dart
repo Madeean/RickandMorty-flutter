@@ -1,10 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rickandmortyapp/domain/character/model/CharacterDomainModel.dart';
 import 'package:rickandmortyapp/presentation/pages/character/CharacterController.dart';
-import 'package:rickandmortyapp/presentation/pages/character/viewmodel/CharacterViewModel.dart';
 import 'package:rickandmortyapp/presentation/themes/Colors.dart';
 import 'package:rickandmortyapp/presentation/widgets/CharacterCard.dart';
 import 'package:rickandmortyapp/utils/RequestState.dart';
@@ -17,30 +14,15 @@ class CharacterScreen extends ConsumerStatefulWidget {
 }
 
 class _CharacterScreenState extends ConsumerState<CharacterScreen> {
-  late CharacterController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = ref.read(episodeControllerProvider);
-    controller.initScrollController();
-
-    if (controller.shouldFetchAllCharacter()) {
-      Future.microtask(() {
-        controller.fetchAllCharacter();
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(characterViewModelProvider);
+    final controllerState = ref.watch(characterControllerProvider);
+    final controller = ref.watch(characterControllerProvider.notifier);
+
+    final dataCharacterState = controllerState.dataCharacterState;
+    final isFetching = controllerState.isFetching;
+    final hasMore = controllerState.hasMore;
+
     return Container(
       color: CustomColors.abuAbuMuda,
       padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
@@ -56,7 +38,7 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
               ),
             ),
             onPressed: () {
-              _showBottomSheet(context);
+              _showBottomSheet(context, controller);
             },
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 12),
@@ -75,7 +57,8 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
               onRefresh: () async {
                 controller.fetchAllCharacter();
               },
-              child: _buildBody(state.character),
+              child: _buildBody(
+                  dataCharacterState, controller, isFetching, hasMore),
             ),
           ),
         ],
@@ -83,7 +66,7 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
     );
   }
 
-  void _showBottomSheet(BuildContext context) {
+  void _showBottomSheet(BuildContext context, CharacterController controller) {
     showModalBottomSheet(
       backgroundColor: CustomColors.white,
       enableDrag: true,
@@ -107,79 +90,79 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),
               child: SingleChildScrollView(
-                controller: scrollController,
-                child: Column(
-                  children: [
-                    TextField(
-                      controller: controller.nameTextC,
-                      decoration: InputDecoration(
-                        hintText: 'Search Name',
-                        prefixIcon: const Icon(Icons.search),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: CustomColors.hitam),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                          const BorderSide(color: CustomColors.biru, width: 2),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: CustomColors.biru,
-                          padding: EdgeInsets.zero,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                  controller: scrollController,
+                  child: Column(
+                    children: [
+                      TextField(
+                        controller: controller.nameTextC,
+                        decoration: InputDecoration(
+                          hintText: 'Search Name',
+                          prefixIcon: const Icon(Icons.search),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: CustomColors.hitam),
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                        ),
-                        onPressed: () {
-                          controller.fetchAllCharacter();
-                          Navigator.pop(context);
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 12),
-                          child: Text(
-                            "Search Character",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                                color: CustomColors.white),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                color: CustomColors.biru, width: 2),
+                            borderRadius: BorderRadius.circular(12),
                           ),
                         ),
                       ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: CustomColors.abuAbuTua,
-                          padding: EdgeInsets.zero,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                      Container(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: CustomColors.biru,
+                            padding: EdgeInsets.zero,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                           ),
-                        ),
-                        onPressed: () {
-                          controller.resetController();
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 12),
-                          child: Text(
-                            "Clear",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                                color: CustomColors.white),
+                          onPressed: () {
+                            controller.fetchAllCharacter();
+                            Navigator.pop(context);
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 12),
+                            child: Text(
+                              "Search Character",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: CustomColors.white),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ),
+                      Container(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: CustomColors.abuAbuTua,
+                            padding: EdgeInsets.zero,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          onPressed: () {
+                            controller.resetController();
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 12),
+                            child: Text(
+                              "Clear",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: CustomColors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )),
             );
           },
         );
@@ -187,7 +170,8 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
     );
   }
 
-  Widget _buildBody(RequestState<CharacterDomainModel> state) {
+  Widget _buildBody(RequestState<CharacterDomainModel> state,
+      CharacterController controller, bool isFetching, bool hasMore) {
     return state.when(
       idle: () => const Center(child: Text("Silakan cari character")),
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -205,17 +189,15 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
             mainAxisSpacing: 15,
             childAspectRatio: 0.75,
           ),
-          itemCount: data.results.length + 1,
+          itemCount: data.results.length,
           itemBuilder: (context, index) {
-
             if (index < data.results.length) {
               final character = data.results[index];
               return CharacterCard(
                 character: character,
               );
             } else {
-              final vm = ref.read(characterViewModelProvider.notifier);
-              if (vm.hasMore && vm.isFetching) {
+              if (hasMore && isFetching) {
                 return const Padding(
                   padding: EdgeInsets.symmetric(vertical: 16),
                   child: Center(child: CircularProgressIndicator()),
