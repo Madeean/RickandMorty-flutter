@@ -90,8 +90,10 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),
               child: SingleChildScrollView(
-                  controller: scrollController,
-                  child: Column(
+                controller: scrollController,
+                child: Consumer(builder: (context, ref, child) {
+                  final state = ref.watch(characterControllerProvider);
+                  return Column(
                     children: [
                       TextField(
                         controller: controller.nameTextC,
@@ -110,6 +112,71 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              decoration: InputDecoration(
+                                labelText: 'Gender',
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: CustomColors.hitam),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: CustomColors.biru, width: 2),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              value: state.gender,
+                              items:
+                                  controller.getAllGender.map((String status) {
+                                return DropdownMenuItem<String>(
+                                  value: status,
+                                  child: Text(status),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                controller.handleDataGender(newValue ?? 'All');
+                              },
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              decoration: InputDecoration(
+                                labelText: 'Status',
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: CustomColors.hitam),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: CustomColors.biru, width: 2),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              value: state.status,
+                              items:
+                                  controller.getAllStatus.map((String status) {
+                                return DropdownMenuItem<String>(
+                                  value: status,
+                                  child: Text(status),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                controller.handleDataStatus(newValue ?? 'All');
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
                       Container(
                         width: double.infinity,
                         child: ElevatedButton(
@@ -147,7 +214,7 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
                             ),
                           ),
                           onPressed: () {
-                            controller.resetController();
+                            controller.resetFilter();
                           },
                           child: const Padding(
                             padding: EdgeInsets.symmetric(vertical: 12),
@@ -162,7 +229,9 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
                         ),
                       ),
                     ],
-                  )),
+                  );
+                }),
+              ),
             );
           },
         );

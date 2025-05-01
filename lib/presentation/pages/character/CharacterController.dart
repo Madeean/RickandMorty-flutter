@@ -10,11 +10,15 @@ class CharacterControllerState {
   final RequestState<CharacterDomainModel> dataCharacterState;
   final bool isFetching;
   final bool hasMore;
+  final String status;
+  final String gender;
 
   CharacterControllerState({
     required this.dataCharacterState,
     required this.isFetching,
     required this.hasMore,
+    required this.status,
+    required this.gender,
   });
 
   factory CharacterControllerState.initial() {
@@ -22,6 +26,8 @@ class CharacterControllerState {
       dataCharacterState: const RequestState.idle(),
       isFetching: false,
       hasMore: true,
+      status: 'All',
+      gender: 'All',
     );
   }
 
@@ -29,11 +35,15 @@ class CharacterControllerState {
     RequestState<CharacterDomainModel>? dataCharacterState,
     bool? isFetching,
     bool? hasMore,
+    String? status,
+    String? gender,
   }) {
     return CharacterControllerState(
       dataCharacterState: dataCharacterState ?? this.dataCharacterState,
       isFetching: isFetching ?? this.isFetching,
       hasMore: hasMore ?? this.hasMore,
+      status: status ?? this.status,
+      gender: gender ?? this.gender,
     );
   }
 }
@@ -69,7 +79,12 @@ class CharacterController extends StateNotifier<CharacterControllerState> {
   }
 
   void fetchAllCharacter() {
-    viewModel.fetchCharacters(nameTextController.text.trim(), '', "", '', '');
+    viewModel.fetchCharacters(
+        nameTextController.text.trim(),
+        state.status == 'All' ? '' : state.status.toLowerCase(),
+        "",
+        '',
+        state.gender == 'All' ? '' : state.gender.toLowerCase());
   }
 
   void initScrollController() {
@@ -84,11 +99,10 @@ class CharacterController extends StateNotifier<CharacterControllerState> {
     }
   }
 
-  @override
-  void dispose() {
-    scrollController.dispose();
-    nameTextController.dispose();
-    super.dispose();
+  void resetFilter() {
+    resetController();
+    handleDataStatus('All');
+    handleDataGender('All');
   }
 
   void resetController() {
@@ -100,9 +114,29 @@ class CharacterController extends StateNotifier<CharacterControllerState> {
     return stateCharacter.isIdle || stateCharacter.isLoading;
   }
 
+  void handleDataStatus(String value) {
+    state = state.copyWith(status: value);
+  }
+
+  void handleDataGender(String value) {
+    state = state.copyWith(gender: value);
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    nameTextController.dispose();
+    super.dispose();
+  }
+
   ScrollController get scrollC => scrollController;
 
   TextEditingController get nameTextC => nameTextController;
+
+  List<String> get getAllStatus => ['All', 'Alive', 'Dead', 'Unknown'];
+
+  List<String> get getAllGender =>
+      ['All', 'Female', 'Male', 'Genderless', 'Unknown'];
 }
 
 final characterControllerProvider =
