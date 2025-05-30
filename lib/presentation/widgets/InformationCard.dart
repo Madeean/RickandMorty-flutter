@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:rickandmortyapp/domain/episode/model/EpisodeDomainModel.dart';
-import 'package:rickandmortyapp/presentation/themes/Colors.dart';
+import 'package:rick_and_morty_new/presentation/themes/Colors.dart';
 
 class InformationCard extends StatelessWidget {
   final String title;
   final String description;
   final String date;
-  const InformationCard({super.key, required this.title, required this.description, required this.date});
+
+  const InformationCard({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.date,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +19,7 @@ class InformationCard extends StatelessWidget {
       elevation: 3,
       color: CustomColors.white,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(14),
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(14)),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8),
@@ -25,25 +28,18 @@ class InformationCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-            const SizedBox(
-              height: 8,
-            ),
+            const SizedBox(height: 8),
             Text(
               description,
-              style: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
-              ),
+              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [Text(
+              children: [
+                Text(
                   date,
                   style: const TextStyle(
                     fontWeight: FontWeight.w300,
@@ -66,14 +62,15 @@ class InformationCard extends StatelessWidget {
                     child: Text(
                       "Detail",
                       style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                          color: CustomColors.white),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: CustomColors.white,
+                      ),
                     ),
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

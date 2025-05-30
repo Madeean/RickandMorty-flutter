@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rickandmortyapp/di/Injection.dart';
-import 'package:rickandmortyapp/presentation/navigation/RouteGenerator.dart';
-import 'package:rickandmortyapp/presentation/navigation/RoutePage.dart';
+import 'package:rick_and_morty_new/presentation/navigation/RouteGenerator.dart';
+import 'package:rick_and_morty_new/presentation/navigation/RoutePage.dart';
+
+import 'di/Injection.dart';
 
 void main() {
   setupDI();

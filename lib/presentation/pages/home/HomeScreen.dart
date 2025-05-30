@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rickandmortyapp/presentation/pages/home/HomeController.dart';
-import 'package:rickandmortyapp/presentation/themes/Colors.dart';
+import 'package:rick_and_morty_new/presentation/pages/home/HomeController.dart';
+import 'package:rick_and_morty_new/presentation/themes/Colors.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});

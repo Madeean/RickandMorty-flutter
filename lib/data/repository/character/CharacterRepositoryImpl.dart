@@ -1,9 +1,9 @@
-import 'package:rickandmortyapp/data/network/Network.dart';
-import 'package:rickandmortyapp/data/repository/character/model/CharacterResponse.dart';
-import 'package:rickandmortyapp/data/utils/ApiRequest.dart';
-import 'package:rickandmortyapp/domain/character/CharacterRepository.dart';
-import 'package:rickandmortyapp/domain/character/model/CharacterDomainModel.dart';
-import 'package:rickandmortyapp/utils/RequestState.dart';
+import 'package:rick_and_morty_new/data/network/Network.dart';
+import 'package:rick_and_morty_new/data/repository/character/model/CharacterResponse.dart';
+import 'package:rick_and_morty_new/data/utils/ApiRequest.dart';
+import 'package:rick_and_morty_new/domain/character/CharacterRepository.dart';
+import 'package:rick_and_morty_new/domain/character/model/CharacterDomainModel.dart';
+import 'package:rick_and_morty_new/utils/RequestState.dart';
 
 class CharacterRepositoryImpl implements CharacterRepository {
   final Network network;

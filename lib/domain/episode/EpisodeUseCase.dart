@@ -1,4 +1,4 @@
-import 'package:rickandmortyapp/domain/episode/model/EpisodeDomainModel.dart';
+import 'package:rick_and_morty_new/domain/episode/model/EpisodeDomainModel.dart';
 
 import '../../utils/RequestState.dart';
 

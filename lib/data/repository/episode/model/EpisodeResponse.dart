@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rickandmortyapp/domain/episode/model/EpisodeDomainModel.dart';
+import 'package:rick_and_morty_new/domain/episode/model/EpisodeDomainModel.dart';
 part 'EpisodeResponse.freezed.dart';
 part 'EpisodeResponse.g.dart';
 

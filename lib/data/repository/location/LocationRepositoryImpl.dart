@@ -1,9 +1,9 @@
-import 'package:rickandmortyapp/data/network/Network.dart';
-import 'package:rickandmortyapp/data/repository/location/model/LocationResponse.dart';
-import 'package:rickandmortyapp/data/utils/ApiRequest.dart';
-import 'package:rickandmortyapp/domain/location/LocationRepository.dart';
-import 'package:rickandmortyapp/domain/location/model/LocationDomainModel.dart';
-import 'package:rickandmortyapp/utils/RequestState.dart';
+import 'package:rick_and_morty_new/data/network/Network.dart';
+import 'package:rick_and_morty_new/data/repository/location/model/LocationResponse.dart';
+import 'package:rick_and_morty_new/data/utils/ApiRequest.dart';
+import 'package:rick_and_morty_new/domain/location/LocationRepository.dart';
+import 'package:rick_and_morty_new/domain/location/model/LocationDomainModel.dart';
+import 'package:rick_and_morty_new/utils/RequestState.dart';
 
 class LocationRepositoryImpl implements LocationRepository {
   final Network network;

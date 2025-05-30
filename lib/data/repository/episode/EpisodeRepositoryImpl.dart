@@ -1,9 +1,9 @@
-import 'package:rickandmortyapp/data/network/Network.dart';
-import 'package:rickandmortyapp/data/repository/episode/model/EpisodeResponse.dart';
-import 'package:rickandmortyapp/data/utils/ApiRequest.dart';
-import 'package:rickandmortyapp/domain/episode/EpisodeRepository.dart';
-import 'package:rickandmortyapp/domain/episode/model/EpisodeDomainModel.dart';
-import 'package:rickandmortyapp/utils/RequestState.dart';
+import 'package:rick_and_morty_new/data/network/Network.dart';
+import 'package:rick_and_morty_new/data/repository/episode/model/EpisodeResponse.dart';
+import 'package:rick_and_morty_new/data/utils/ApiRequest.dart';
+import 'package:rick_and_morty_new/domain/episode/EpisodeRepository.dart';
+import 'package:rick_and_morty_new/domain/episode/model/EpisodeDomainModel.dart';
+import 'package:rick_and_morty_new/utils/RequestState.dart';
 
 class EpisodeRepositoryImpl implements EpisodeRepository {
   final Network network;

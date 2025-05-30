@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rickandmortyapp/domain/character/model/CharacterDomainModel.dart';
-import 'package:rickandmortyapp/presentation/themes/Colors.dart';
+import 'package:rick_and_morty_new/domain/character/model/CharacterDomainModel.dart';
+import 'package:rick_and_morty_new/presentation/themes/Colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class CharacterCard extends StatelessWidget {

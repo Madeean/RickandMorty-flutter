@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rickandmortyapp/di/Injection.dart';
-import 'package:rickandmortyapp/domain/episode/EpisodeUseCase.dart';
-import 'package:rickandmortyapp/domain/episode/model/EpisodeDomainModel.dart';
-import 'package:rickandmortyapp/presentation/pages/episode/viewmodel/state/EpisodeState.dart';
-import 'package:rickandmortyapp/utils/RequestState.dart';
+import 'package:rick_and_morty_new/di/Injection.dart';
+import 'package:rick_and_morty_new/domain/episode/EpisodeUseCase.dart';
+import 'package:rick_and_morty_new/domain/episode/model/EpisodeDomainModel.dart';
+import 'package:rick_and_morty_new/presentation/pages/episode/viewmodel/state/EpisodeState.dart';
+import 'package:rick_and_morty_new/utils/RequestState.dart';
 
 class EpisodeViewModel extends StateNotifier<EpisodeState> {
   final EpisodeUseCase _useCase;

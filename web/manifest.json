@@ -1,6 +1,6 @@
 {
-    "name": "rickandmortyapp",
-    "short_name": "rickandmortyapp",
+    "name": "rick_and_morty_new",
+    "short_name": "rick_and_morty_new",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

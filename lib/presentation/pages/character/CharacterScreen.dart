@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rickandmortyapp/domain/character/model/CharacterDomainModel.dart';
-import 'package:rickandmortyapp/presentation/pages/character/CharacterController.dart';
-import 'package:rickandmortyapp/presentation/themes/Colors.dart';
-import 'package:rickandmortyapp/presentation/widgets/CharacterCard.dart';
-import 'package:rickandmortyapp/utils/RequestState.dart';
+import 'package:rick_and_morty_new/domain/character/model/CharacterDomainModel.dart';
+import 'package:rick_and_morty_new/presentation/pages/character/CharacterController.dart';
+import 'package:rick_and_morty_new/presentation/themes/Colors.dart';
+import 'package:rick_and_morty_new/presentation/widgets/CharacterCard.dart';
+import 'package:rick_and_morty_new/presentation/widgets/dropdown/CustomBasicDropdown.dart';
+import 'package:rick_and_morty_new/utils/RequestState.dart';
+
+import '../../widgets/textinput/CustomBasicTextField.dart';
 
 class CharacterScreen extends ConsumerStatefulWidget {
   const CharacterScreen({super.key});
@@ -20,8 +23,6 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
     final controller = ref.watch(characterControllerProvider.notifier);
 
     final dataCharacterState = controllerState.dataCharacterState;
-    final isFetching = controllerState.isFetching;
-    final hasMore = controllerState.hasMore;
 
     return Container(
       color: CustomColors.abuAbuMuda,
@@ -45,9 +46,10 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
               child: Text(
                 "Open Filter",
                 style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                    color: CustomColors.white),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                  color: CustomColors.white,
+                ),
               ),
             ),
           ),
@@ -57,8 +59,7 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
               onRefresh: () async {
                 controller.fetchAllCharacter();
               },
-              child: _buildBody(
-                  dataCharacterState, controller, isFetching, hasMore),
+              child: _buildBody(dataCharacterState, controller),
             ),
           ),
         ],
@@ -78,8 +79,8 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
       isScrollControlled: true,
       builder: (context) {
         return DraggableScrollableSheet(
-          initialChildSize: 0.5,
-          minChildSize: 0.5,
+          initialChildSize: 0.57,
+          minChildSize: 0.57,
           maxChildSize: 0.95,
           expand: false,
           builder: (context, scrollController) {
@@ -91,146 +92,114 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
               ),
               child: SingleChildScrollView(
                 controller: scrollController,
-                child: Consumer(builder: (context, ref, child) {
-                  final state = ref.watch(characterControllerProvider);
-                  return Column(
-                    children: [
-                      TextField(
-                        controller: controller.nameTextC,
-                        decoration: InputDecoration(
-                          hintText: 'Search Name',
-                          prefixIcon: const Icon(Icons.search),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: CustomColors.hitam),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: CustomColors.biru, width: 2),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                child: Consumer(
+                  builder: (context, ref, child) {
+                    final state = ref.watch(characterControllerProvider);
+                    return Column(
+                      children: [
+                        customBasicTextField(
+                          controller.nameTextC,
+                          'Search Name',
+                          Icons.search,
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: DropdownButtonFormField<String>(
-                              decoration: InputDecoration(
-                                labelText: 'Gender',
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: CustomColors.hitam),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: CustomColors.biru, width: 2),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
+                        const SizedBox(height: 16),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: customBasicDropdown(
+                                state.gender,
+                                controller.getAllGender,
+                                (newValue) {
+                                  controller.handleDataGender(
+                                    newValue ?? 'All',
+                                  );
+                                },
                               ),
-                              value: state.gender,
-                              items:
-                                  controller.getAllGender.map((String status) {
-                                return DropdownMenuItem<String>(
-                                  value: status,
-                                  child: Text(status),
-                                );
-                              }).toList(),
-                              onChanged: (String? newValue) {
-                                controller.handleDataGender(newValue ?? 'All');
-                              },
                             ),
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Expanded(
-                            child: DropdownButtonFormField<String>(
-                              decoration: InputDecoration(
-                                labelText: 'Status',
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: CustomColors.hitam),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: CustomColors.biru, width: 2),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: customBasicDropdown(
+                                state.status,
+                                controller.getAllStatus,
+                                (newValue) {
+                                  controller.handleDataStatus(
+                                    newValue ?? 'All',
+                                  );
+                                },
                               ),
-                              value: state.status,
-                              items:
-                                  controller.getAllStatus.map((String status) {
-                                return DropdownMenuItem<String>(
-                                  value: status,
-                                  child: Text(status),
-                                );
-                              }).toList(),
-                              onChanged: (String? newValue) {
-                                controller.handleDataStatus(newValue ?? 'All');
-                              },
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      Container(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: CustomColors.biru,
-                            padding: EdgeInsets.zero,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        customBasicTextField(
+                          controller.nameSpeciesController,
+                          'Search Species',
+                          Icons.search,
+                        ),
+                        const SizedBox(height: 16),
+                        customBasicTextField(
+                          controller.nameTypeController,
+                          'Search Type',
+                          Icons.search,
+                        ),
+                        const SizedBox(height: 16),
+                        Container(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: CustomColors.biru,
+                              padding: EdgeInsets.zero,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                             ),
-                          ),
-                          onPressed: () {
-                            controller.fetchAllCharacter();
-                            Navigator.pop(context);
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12),
-                            child: Text(
-                              "Search Character",
-                              style: TextStyle(
+                            onPressed: () {
+                              controller.fetchAllCharacter();
+                              Navigator.pop(context);
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                "Search Character",
+                                style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
-                                  color: CustomColors.white),
+                                  color: CustomColors.white,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: CustomColors.abuAbuTua,
-                            padding: EdgeInsets.zero,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
+                        Container(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: CustomColors.abuAbuTua,
+                              padding: EdgeInsets.zero,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                             ),
-                          ),
-                          onPressed: () {
-                            controller.resetFilter();
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12),
-                            child: Text(
-                              "Clear",
-                              style: TextStyle(
+                            onPressed: () {
+                              controller.resetFilter();
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                "Clear",
+                                style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
-                                  color: CustomColors.white),
+                                  color: CustomColors.white,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  );
-                }),
+                      ],
+                    );
+                  },
+                ),
               ),
             );
           },
@@ -239,8 +208,10 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
     );
   }
 
-  Widget _buildBody(RequestState<CharacterDomainModel> state,
-      CharacterController controller, bool isFetching, bool hasMore) {
+  Widget _buildBody(
+    RequestState<CharacterDomainModel> state,
+    CharacterController controller,
+  ) {
     return state.when(
       idle: () => const Center(child: Text("Silakan cari character")),
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -262,18 +233,12 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
           itemBuilder: (context, index) {
             if (index < data.results.length) {
               final character = data.results[index];
-              return CharacterCard(
-                character: character,
-              );
+              return CharacterCard(character: character);
             } else {
-              if (hasMore && isFetching) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  child: Center(child: CircularProgressIndicator()),
-                );
-              } else {
-                return const SizedBox.shrink();
-              }
+              return const Padding(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                child: Center(child: CircularProgressIndicator()),
+              );
             }
           },
         );

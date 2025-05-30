@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rickandmortyapp/presentation/navigation/RoutePage.dart';
+import 'package:rick_and_morty_new/presentation/navigation/RoutePage.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

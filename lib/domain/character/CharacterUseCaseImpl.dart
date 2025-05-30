@@ -1,7 +1,7 @@
-import 'package:rickandmortyapp/domain/character/CharacterRepository.dart';
-import 'package:rickandmortyapp/domain/character/CharacterUseCase.dart';
-import 'package:rickandmortyapp/domain/character/model/CharacterDomainModel.dart';
-import 'package:rickandmortyapp/utils/RequestState.dart';
+import 'package:rick_and_morty_new/domain/character/CharacterRepository.dart';
+import 'package:rick_and_morty_new/domain/character/CharacterUseCase.dart';
+import 'package:rick_and_morty_new/domain/character/model/CharacterDomainModel.dart';
+import 'package:rick_and_morty_new/utils/RequestState.dart';
 
 class CharacterUseCaseImpl implements CharacterUseCase {
   final CharacterRepository repository;

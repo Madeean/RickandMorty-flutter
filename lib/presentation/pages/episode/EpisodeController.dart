@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rickandmortyapp/presentation/pages/episode/viewmodel/state/EpisodeState.dart';
+import 'package:rick_and_morty_new/presentation/pages/episode/viewmodel/state/EpisodeState.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../domain/episode/model/EpisodeDomainModel.dart';

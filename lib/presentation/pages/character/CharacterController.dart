@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rickandmortyapp/presentation/pages/character/viewmodel/CharacterViewModel.dart';
-import 'package:rickandmortyapp/presentation/pages/character/viewmodel/state/CharacterState.dart';
+import 'package:rick_and_morty_new/presentation/pages/character/viewmodel/CharacterViewModel.dart';
+import 'package:rick_and_morty_new/presentation/pages/character/viewmodel/state/CharacterState.dart';
 
 import '../../../domain/character/model/CharacterDomainModel.dart';
 import '../../../utils/RequestState.dart';
@@ -52,6 +52,8 @@ class CharacterController extends StateNotifier<CharacterControllerState> {
   final Ref ref;
   final CharacterViewModel viewModel;
   final TextEditingController nameTextController = TextEditingController();
+  final TextEditingController nameSpeciesController = TextEditingController();
+  final TextEditingController nameTypeController = TextEditingController();
 
   late final ScrollController scrollController;
 
@@ -82,8 +84,8 @@ class CharacterController extends StateNotifier<CharacterControllerState> {
     viewModel.fetchCharacters(
         nameTextController.text.trim(),
         state.status == 'All' ? '' : state.status.toLowerCase(),
-        "",
-        '',
+        nameSpeciesController.text.trim(),
+        nameTypeController.text.trim(),
         state.gender == 'All' ? '' : state.gender.toLowerCase());
   }
 
@@ -107,6 +109,8 @@ class CharacterController extends StateNotifier<CharacterControllerState> {
 
   void resetController() {
     nameTextController.clear();
+    nameSpeciesController.clear();
+    nameTypeController.clear();
   }
 
   bool shouldFetchAllCharacter() {
@@ -126,12 +130,15 @@ class CharacterController extends StateNotifier<CharacterControllerState> {
   void dispose() {
     scrollController.dispose();
     nameTextController.dispose();
+    nameSpeciesController.dispose();
+    nameTypeController.dispose();
     super.dispose();
   }
 
   ScrollController get scrollC => scrollController;
-
   TextEditingController get nameTextC => nameTextController;
+  TextEditingController get nameSpeciesC => nameSpeciesController;
+  TextEditingController get nameTypeC => nameTypeController;
 
   List<String> get getAllStatus => ['All', 'Alive', 'Dead', 'Unknown'];
 

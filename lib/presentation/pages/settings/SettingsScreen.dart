@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rickandmortyapp/presentation/navigation/RoutePage.dart';
-import 'package:rickandmortyapp/presentation/themes/Colors.dart';
+import 'package:rick_and_morty_new/presentation/navigation/RoutePage.dart';
+import 'package:rick_and_morty_new/presentation/themes/Colors.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

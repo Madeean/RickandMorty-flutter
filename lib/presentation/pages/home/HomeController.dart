@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rickandmortyapp/presentation/pages/character/CharacterScreen.dart';
-import 'package:rickandmortyapp/presentation/pages/episode/EpisodeScreen.dart';
-import 'package:rickandmortyapp/presentation/pages/home/model/BottomNavBarItemModel.dart';
-import 'package:rickandmortyapp/presentation/pages/location/LocationScreen.dart';
-import 'package:rickandmortyapp/presentation/pages/settings/SettingsScreen.dart';
+import 'package:rick_and_morty_new/presentation/pages/character/CharacterScreen.dart';
+import 'package:rick_and_morty_new/presentation/pages/episode/EpisodeScreen.dart';
+import 'package:rick_and_morty_new/presentation/pages/home/model/BottomNavBarItemModel.dart';
+import 'package:rick_and_morty_new/presentation/pages/location/LocationScreen.dart';
+import 'package:rick_and_morty_new/presentation/pages/settings/SettingsScreen.dart';
 
 class HomeState {
   final int selectedIndex;

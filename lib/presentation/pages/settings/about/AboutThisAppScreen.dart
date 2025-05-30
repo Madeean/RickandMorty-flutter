@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rickandmortyapp/presentation/themes/Colors.dart';
+import 'package:rick_and_morty_new/presentation/themes/Colors.dart';
 
 class AboutThisAppScreen extends ConsumerStatefulWidget {
   const AboutThisAppScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rickandmortyapp/domain/character/model/CharacterDomainModel.dart';
+import 'package:rick_and_morty_new/domain/character/model/CharacterDomainModel.dart';
 
 part 'CharacterResponse.freezed.dart';
 part 'CharacterResponse.g.dart';

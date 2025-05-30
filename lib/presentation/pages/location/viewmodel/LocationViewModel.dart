@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rickandmortyapp/di/Injection.dart';
-import 'package:rickandmortyapp/domain/location/model/LocationDomainModel.dart';
-import 'package:rickandmortyapp/presentation/pages/location/viewmodel/state/LocationState.dart';
-import 'package:rickandmortyapp/utils/RequestState.dart';
+import 'package:rick_and_morty_new/di/Injection.dart';
+import 'package:rick_and_morty_new/domain/location/model/LocationDomainModel.dart';
+import 'package:rick_and_morty_new/presentation/pages/location/viewmodel/state/LocationState.dart';
+import 'package:rick_and_morty_new/utils/RequestState.dart';
 
 import '../../../../domain/location/LocationUseCase.dart';
 
@@ -25,8 +25,6 @@ class LocationViewModel extends StateNotifier<LocationState> {
       state = state.copyWith(location: const RequestState.loading());
     }
 
-    print("fetchEpisodes | page: $_currentPage | isLoadMore: $isLoadMore | isFetching: $_isFetching | hasMore: $_hasMore");
-
     _useCase.getAllLocation(name, type, dimension, _currentPage).listen((result) {
       result.when(
           success: (data) {
@@ -36,9 +34,9 @@ class LocationViewModel extends StateNotifier<LocationState> {
 
             final List<LocationDetailDomainModel> combinedResults = [...oldResults, ...data.results];
 
-            if (data.results.isEmpty) {
-              _hasMore = false;
-            } else {
+            const pageSize = 20;
+            _hasMore = data.results.isNotEmpty && data.results.length == pageSize;
+            if (_hasMore) {
               _currentPage++;
             }
 

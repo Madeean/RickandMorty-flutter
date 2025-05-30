@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rickandmortyapp/domain/episode/model/EpisodeDomainModel.dart';
-import 'package:rickandmortyapp/presentation/pages/episode/EpisodeController.dart';
-import 'package:rickandmortyapp/presentation/pages/episode/viewmodel/EpisodeViewModel.dart';
-import 'package:rickandmortyapp/presentation/themes/Colors.dart';
-import 'package:rickandmortyapp/presentation/widgets/InformationCard.dart';
-import 'package:rickandmortyapp/utils/RequestState.dart';
+import 'package:rick_and_morty_new/domain/episode/model/EpisodeDomainModel.dart';
+import 'package:rick_and_morty_new/presentation/pages/episode/EpisodeController.dart';
+import 'package:rick_and_morty_new/presentation/themes/Colors.dart';
+import 'package:rick_and_morty_new/presentation/widgets/InformationCard.dart';
+import 'package:rick_and_morty_new/utils/RequestState.dart';
 
 class EpisodeScreen extends ConsumerStatefulWidget {
   const EpisodeScreen({super.key});
@@ -15,15 +14,12 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 }
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
-
   @override
   Widget build(BuildContext context) {
     final controllerState = ref.watch(episodeControllerProvider);
     final controller = ref.watch(episodeControllerProvider.notifier);
 
     final dataEpisodeState = controllerState.dataEpisodeState;
-    final isFetching = controllerState.isFetching;
-    final hasMore = controllerState.hasMore;
 
     return Container(
       color: CustomColors.abuAbuMuda,
@@ -53,16 +49,15 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                 onRefresh: () async {
                   controller.fetchAllEpisode();
                 },
-                child: _buildBody(
-                    dataEpisodeState, controller, isFetching, hasMore)),
+                child: _buildBody(dataEpisodeState, controller)),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildBody(RequestState<EpisodeDomainModel> state,
-      EpisodeController controller, bool isFetching, bool hasMore) {
+  Widget _buildBody(
+      RequestState<EpisodeDomainModel> state, EpisodeController controller) {
     return state.when(
       idle: () => const Center(child: Text("Silakan cari episode")),
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -73,7 +68,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
 
         return ListView.separated(
           controller: controller.scrollC,
-          itemCount: data.results.length ,
+          itemCount: data.results.length,
           separatorBuilder: (_, __) => const SizedBox(height: 8),
           itemBuilder: (_, index) {
             if (index < data.results.length) {

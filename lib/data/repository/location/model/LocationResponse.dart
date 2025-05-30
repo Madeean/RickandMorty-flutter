@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rickandmortyapp/domain/location/model/LocationDomainModel.dart';
+import 'package:rick_and_morty_new/domain/location/model/LocationDomainModel.dart';
 
 part 'LocationResponse.freezed.dart';
 part 'LocationResponse.g.dart';
