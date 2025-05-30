@@ -37,6 +37,7 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
               ),
             ),
             onPressed: () {
+              _showBottomSheet(context, controller);
             },
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 12),
@@ -63,105 +64,107 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
     );
   }
 
-  // void _showBottomSheet(BuildContext context, LocationController controller) {
-  //   showModalBottomSheet(
-  //     backgroundColor: CustomColors.white,
-  //     enableDrag: true,
-  //     useSafeArea: true,
-  //     context: context,
-  //     shape: const RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-  //     ),
-  //     isScrollControlled: true,
-  //     builder: (context) {
-  //       return DraggableScrollableSheet(
-  //         initialChildSize: 0.57,
-  //         minChildSize: 0.57,
-  //         maxChildSize: 0.95,
-  //         expand: false,
-  //         builder: (context, scrollController) {
-  //           return Container(
-  //             padding: const EdgeInsets.all(16),
-  //             decoration: const BoxDecoration(
-  //               color: Colors.white,
-  //               borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-  //             ),
-  //             child: SingleChildScrollView(
-  //               controller: scrollController,
-  //               child: Consumer(builder: (context, ref, child) {
-  //                 final state = ref.watch(locationControllerProvider);
-  //                 return Column(
-  //                   children: [
-  //                     customBasicTextField(
-  //                         controller.nameTextC, 'Search Name', Icons.search),
-  //                     const SizedBox(height: 16),
-  //                     customBasicTextField(controller.nameSpeciesController,
-  //                         'Search Species', Icons.search),
-  //                     const SizedBox(height: 16),
-  //                     customBasicTextField(controller.nameTypeController,
-  //                         'Search Type', Icons.search),
-  //                     const SizedBox(height: 16),
-  //                     Container(
-  //                       width: double.infinity,
-  //                       child: ElevatedButton(
-  //                         style: ElevatedButton.styleFrom(
-  //                           backgroundColor: CustomColors.biru,
-  //                           padding: EdgeInsets.zero,
-  //                           shape: RoundedRectangleBorder(
-  //                             borderRadius: BorderRadius.circular(8),
-  //                           ),
-  //                         ),
-  //                         onPressed: () {
-  //                           controller.fetchAllCharacter();
-  //                           Navigator.pop(context);
-  //                         },
-  //                         child: const Padding(
-  //                           padding: EdgeInsets.symmetric(vertical: 12),
-  //                           child: Text(
-  //                             "Search Character",
-  //                             style: TextStyle(
-  //                                 fontWeight: FontWeight.w500,
-  //                                 fontSize: 14,
-  //                                 color: CustomColors.white),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ),
-  //                     Container(
-  //                       width: double.infinity,
-  //                       child: ElevatedButton(
-  //                         style: ElevatedButton.styleFrom(
-  //                           backgroundColor: CustomColors.abuAbuTua,
-  //                           padding: EdgeInsets.zero,
-  //                           shape: RoundedRectangleBorder(
-  //                             borderRadius: BorderRadius.circular(8),
-  //                           ),
-  //                         ),
-  //                         onPressed: () {
-  //                           controller.resetFilter();
-  //                         },
-  //                         child: const Padding(
-  //                           padding: EdgeInsets.symmetric(vertical: 12),
-  //                           child: Text(
-  //                             "Clear",
-  //                             style: TextStyle(
-  //                                 fontWeight: FontWeight.w500,
-  //                                 fontSize: 14,
-  //                                 color: CustomColors.white),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 );
-  //               }),
-  //             ),
-  //           );
-  //         },
-  //       );
-  //     },
-  //   );
-  // }
+  void _showBottomSheet(BuildContext context, LocationController controller) {
+    showModalBottomSheet(
+      backgroundColor: CustomColors.white,
+      enableDrag: true,
+      useSafeArea: true,
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      isScrollControlled: true,
+      builder: (context) {
+        return DraggableScrollableSheet(
+          initialChildSize: 0.45,
+          minChildSize: 0.45,
+          maxChildSize: 0.95,
+          expand: false,
+          builder: (context, scrollController) {
+            return Container(
+              padding: const EdgeInsets.all(16),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+              ),
+              child: SingleChildScrollView(
+                controller: scrollController,
+                child: Consumer(builder: (context, ref, child) {
+                  final state = ref.watch(locationControllerProvider);
+                  return Column(
+                    children: [
+                      customBasicTextField(
+                          controller.nameLocationC, 'Search Name Location',
+                          Icons.search),
+                      const SizedBox(height: 16),
+                      customBasicTextField(controller.typeLocationController,
+                          'Search Type Location', Icons.search),
+                      const SizedBox(height: 16),
+                      customBasicTextField(controller
+                          .dimensionLocationController,
+                          'Search Dimension Location', Icons.search),
+                      const SizedBox(height: 16),
+                      Container(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: CustomColors.biru,
+                            padding: EdgeInsets.zero,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          onPressed: () {
+                            controller.fetchAllLocation();
+                            Navigator.pop(context);
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 12),
+                            child: Text(
+                              "Search Location",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: CustomColors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: CustomColors.abuAbuTua,
+                            padding: EdgeInsets.zero,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          onPressed: () {
+                            controller.resetFilter();
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 12),
+                            child: Text(
+                              "Clear",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: CustomColors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
 
   Widget _buildBody(
       RequestState<LocationDomainModel> state, LocationController controller) {

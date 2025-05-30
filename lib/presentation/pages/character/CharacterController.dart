@@ -97,7 +97,11 @@ class CharacterController extends StateNotifier<CharacterControllerState> {
     if (scrollController.position.pixels >=
         scrollController.position.maxScrollExtent - 500) {
       if (!state.hasMore) return;
-      viewModel.loadMore(nameTextController.text.trim(), '', '', '', '');
+      viewModel.loadMore(nameTextController.text.trim(),
+          state.status == 'All' ? '' : state.status.toLowerCase(),
+          nameSpeciesController.text.trim(),
+          nameTypeController.text.trim(),
+          state.gender == 'All' ? '' : state.gender.toLowerCase());
     }
   }
 

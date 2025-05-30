@@ -41,11 +41,15 @@ class LocationControllerState {
 class LocationController extends StateNotifier<LocationControllerState> {
   final Ref ref;
   final LocationViewModel viewModel;
+  final TextEditingController nameLocationController = TextEditingController();
+  final TextEditingController typeLocationController = TextEditingController();
+  final TextEditingController dimensionLocationController =
+      TextEditingController();
 
   late ScrollController scrollController;
 
   LocationController(this.ref, this.viewModel)
-      : super(LocationControllerState.initial()) {
+    : super(LocationControllerState.initial()) {
     initScrollController();
 
     Future.microtask(() {
@@ -68,7 +72,11 @@ class LocationController extends StateNotifier<LocationControllerState> {
   }
 
   void fetchAllLocation() {
-    viewModel.fetchLocations('', '', '');
+    viewModel.fetchLocations(
+      nameLocationController.text.trim(),
+      typeLocationController.text.trim(),
+      dimensionLocationController.text.trim(),
+    );
   }
 
   bool shouldFetchAllLocation() {
@@ -84,14 +92,37 @@ class LocationController extends StateNotifier<LocationControllerState> {
     if (scrollController.position.pixels >=
         scrollController.position.maxScrollExtent - 300) {
       if (!state.hasMore) return;
-      viewModel.loadMore('', '', '');
+      viewModel.loadMore(
+        nameLocationController.text.trim(),
+        typeLocationController.text.trim(),
+        dimensionLocationController.text.trim(),
+      );
     }
+  }
+
+  void resetController() {
+    nameLocationController.clear();
+    typeLocationController.clear();
+    dimensionLocationController.clear();
+  }
+
+  void resetFilter() {
+    resetController();
   }
 
   ScrollController get scrollC => scrollController;
 
+  TextEditingController get nameLocationC => nameLocationController;
+
+  TextEditingController get typeLocationC => typeLocationController;
+
+  TextEditingController get dimensionLocationC => dimensionLocationController;
+
   @override
   void dispose() {
+    nameLocationController.dispose();
+    typeLocationController.dispose();
+    dimensionLocationController.dispose();
     scrollController.dispose();
     super.dispose();
   }
@@ -99,12 +130,12 @@ class LocationController extends StateNotifier<LocationControllerState> {
 
 final locationControllerProvider =
     StateNotifierProvider<LocationController, LocationControllerState>((ref) {
-  final viewModel = ref.read(locationViewModelProvider.notifier);
-  final controller = LocationController(ref, viewModel);
+      final viewModel = ref.read(locationViewModelProvider.notifier);
+      final controller = LocationController(ref, viewModel);
 
-  ref.onDispose(() {
-    controller.dispose();
-  });
+      ref.onDispose(() {
+        controller.dispose();
+      });
 
-  return controller;
-});
+      return controller;
+    });
