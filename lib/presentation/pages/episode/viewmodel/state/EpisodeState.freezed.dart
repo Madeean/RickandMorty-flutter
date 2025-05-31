@@ -12,23 +12,27 @@ part of 'EpisodeState.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$EpisodeState {
   RequestState<EpisodeDomainModel> get episode =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EpisodeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EpisodeStateCopyWith<EpisodeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $EpisodeStateCopyWith<$Res> {
-  factory $EpisodeStateCopyWith(
-          EpisodeState value, $Res Function(EpisodeState) then) =
-      _$EpisodeStateCopyWithImpl<$Res, EpisodeState>;
+  factory $EpisodeStateCopyWith(EpisodeState value,
+      $Res Function(EpisodeState) then,) = _$EpisodeStateCopyWithImpl<
+      $Res,
+      EpisodeState>;
   @useResult
   $Res call({RequestState<EpisodeDomainModel> episode});
 
@@ -45,24 +49,31 @@ class _$EpisodeStateCopyWithImpl<$Res, $Val extends EpisodeState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EpisodeState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? episode = null,
-  }) {
-    return _then(_value.copyWith(
-      episode: null == episode
-          ? _value.episode
-          : episode // ignore: cast_nullable_to_non_nullable
-              as RequestState<EpisodeDomainModel>,
-    ) as $Val);
+  $Res call({Object? episode = null}) {
+    return _then(
+      _value.copyWith(
+            episode:
+                null == episode
+                    ? _value.episode
+                    : episode // ignore: cast_nullable_to_non_nullable
+                        as RequestState<EpisodeDomainModel>,
+          )
+          as $Val,
+    );
   }
 
+  /// Create a copy of EpisodeState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RequestStateCopyWith<EpisodeDomainModel, $Res> get episode {
-    return $RequestStateCopyWith<EpisodeDomainModel, $Res>(_value.episode,
-        (value) {
+    return $RequestStateCopyWith<EpisodeDomainModel, $Res>(_value.episode, (
+      value,
+    ) {
       return _then(_value.copyWith(episode: value) as $Val);
     });
   }
@@ -71,9 +82,9 @@ class _$EpisodeStateCopyWithImpl<$Res, $Val extends EpisodeState>
 /// @nodoc
 abstract class _$$EpisodeStateImplCopyWith<$Res>
     implements $EpisodeStateCopyWith<$Res> {
-  factory _$$EpisodeStateImplCopyWith(
-          _$EpisodeStateImpl value, $Res Function(_$EpisodeStateImpl) then) =
-      __$$EpisodeStateImplCopyWithImpl<$Res>;
+  factory _$$EpisodeStateImplCopyWith(_$EpisodeStateImpl value,
+      $Res Function(_$EpisodeStateImpl) then,) = __$$EpisodeStateImplCopyWithImpl<
+      $Res>;
   @override
   @useResult
   $Res call({RequestState<EpisodeDomainModel> episode});
@@ -86,21 +97,23 @@ abstract class _$$EpisodeStateImplCopyWith<$Res>
 class __$$EpisodeStateImplCopyWithImpl<$Res>
     extends _$EpisodeStateCopyWithImpl<$Res, _$EpisodeStateImpl>
     implements _$$EpisodeStateImplCopyWith<$Res> {
-  __$$EpisodeStateImplCopyWithImpl(
-      _$EpisodeStateImpl _value, $Res Function(_$EpisodeStateImpl) _then)
-      : super(_value, _then);
+  __$$EpisodeStateImplCopyWithImpl(_$EpisodeStateImpl _value,
+      $Res Function(_$EpisodeStateImpl) _then,) : super(_value, _then);
 
+  /// Create a copy of EpisodeState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? episode = null,
-  }) {
-    return _then(_$EpisodeStateImpl(
-      episode: null == episode
-          ? _value.episode
-          : episode // ignore: cast_nullable_to_non_nullable
-              as RequestState<EpisodeDomainModel>,
-    ));
+  $Res call({Object? episode = null}) {
+    return _then(
+      _$EpisodeStateImpl(
+        episode:
+            null == episode
+                ? _value.episode
+                : episode // ignore: cast_nullable_to_non_nullable
+                    as RequestState<EpisodeDomainModel>,
+      ),
+    );
   }
 }
 
@@ -129,7 +142,9 @@ class _$EpisodeStateImpl implements _EpisodeState {
   @override
   int get hashCode => Object.hash(runtimeType, episode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EpisodeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EpisodeStateImplCopyWith<_$EpisodeStateImpl> get copyWith =>
@@ -137,13 +152,17 @@ class _$EpisodeStateImpl implements _EpisodeState {
 }
 
 abstract class _EpisodeState implements EpisodeState {
-  const factory _EpisodeState(
-      {final RequestState<EpisodeDomainModel> episode}) = _$EpisodeStateImpl;
+  const factory _EpisodeState({
+    final RequestState<EpisodeDomainModel> episode,
+  }) = _$EpisodeStateImpl;
 
   @override
   RequestState<EpisodeDomainModel> get episode;
+
+  /// Create a copy of EpisodeState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EpisodeStateImplCopyWith<_$EpisodeStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

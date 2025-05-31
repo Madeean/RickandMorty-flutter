@@ -12,7 +12,8 @@ part of 'EpisodeResponse.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 EpisodeResponse _$EpisodeResponseFromJson(Map<String, dynamic> json) {
   return _EpisodeResponse.fromJson(json);
@@ -24,17 +25,22 @@ mixin _$EpisodeResponse {
   List<EpisodeDetailResponse>? get results =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this EpisodeResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EpisodeResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EpisodeResponseCopyWith<EpisodeResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $EpisodeResponseCopyWith<$Res> {
-  factory $EpisodeResponseCopyWith(
-          EpisodeResponse value, $Res Function(EpisodeResponse) then) =
-      _$EpisodeResponseCopyWithImpl<$Res, EpisodeResponse>;
+  factory $EpisodeResponseCopyWith(EpisodeResponse value,
+      $Res Function(EpisodeResponse) then,) = _$EpisodeResponseCopyWithImpl<
+      $Res,
+      EpisodeResponse>;
   @useResult
   $Res call({String? message, List<EpisodeDetailResponse>? results});
 }
@@ -49,31 +55,36 @@ class _$EpisodeResponseCopyWithImpl<$Res, $Val extends EpisodeResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EpisodeResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? message = freezed,
-    Object? results = freezed,
-  }) {
-    return _then(_value.copyWith(
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      results: freezed == results
-          ? _value.results
-          : results // ignore: cast_nullable_to_non_nullable
-              as List<EpisodeDetailResponse>?,
-    ) as $Val);
+  $Res call({Object? message = freezed, Object? results = freezed}) {
+    return _then(
+      _value.copyWith(
+            message:
+                freezed == message
+                    ? _value.message
+                    : message // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            results:
+                freezed == results
+                    ? _value.results
+                    : results // ignore: cast_nullable_to_non_nullable
+                        as List<EpisodeDetailResponse>?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$EpisodeResponseImplCopyWith<$Res>
     implements $EpisodeResponseCopyWith<$Res> {
-  factory _$$EpisodeResponseImplCopyWith(_$EpisodeResponseImpl value,
-          $Res Function(_$EpisodeResponseImpl) then) =
-      __$$EpisodeResponseImplCopyWithImpl<$Res>;
+  factory _$$EpisodeResponseImplCopyWith(
+    _$EpisodeResponseImpl value,
+    $Res Function(_$EpisodeResponseImpl) then,
+  ) = __$$EpisodeResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? message, List<EpisodeDetailResponse>? results});
@@ -83,35 +94,38 @@ abstract class _$$EpisodeResponseImplCopyWith<$Res>
 class __$$EpisodeResponseImplCopyWithImpl<$Res>
     extends _$EpisodeResponseCopyWithImpl<$Res, _$EpisodeResponseImpl>
     implements _$$EpisodeResponseImplCopyWith<$Res> {
-  __$$EpisodeResponseImplCopyWithImpl(
-      _$EpisodeResponseImpl _value, $Res Function(_$EpisodeResponseImpl) _then)
-      : super(_value, _then);
+  __$$EpisodeResponseImplCopyWithImpl(_$EpisodeResponseImpl _value,
+      $Res Function(_$EpisodeResponseImpl) _then,) : super(_value, _then);
 
+  /// Create a copy of EpisodeResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? message = freezed,
-    Object? results = freezed,
-  }) {
-    return _then(_$EpisodeResponseImpl(
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      results: freezed == results
-          ? _value._results
-          : results // ignore: cast_nullable_to_non_nullable
-              as List<EpisodeDetailResponse>?,
-    ));
+  $Res call({Object? message = freezed, Object? results = freezed}) {
+    return _then(
+      _$EpisodeResponseImpl(
+        message:
+            freezed == message
+                ? _value.message
+                : message // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        results:
+            freezed == results
+                ? _value._results
+                : results // ignore: cast_nullable_to_non_nullable
+                    as List<EpisodeDetailResponse>?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$EpisodeResponseImpl implements _EpisodeResponse {
-  const _$EpisodeResponseImpl(
-      {this.message, final List<EpisodeDetailResponse>? results})
-      : _results = results;
+  const _$EpisodeResponseImpl({
+    this.message,
+    final List<EpisodeDetailResponse>? results,
+  }) : _results = results;
 
   factory _$EpisodeResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$EpisodeResponseImplFromJson(json);
@@ -142,30 +156,36 @@ class _$EpisodeResponseImpl implements _EpisodeResponse {
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, message, const DeepCollectionEquality().hash(_results));
+    runtimeType,
+    message,
+    const DeepCollectionEquality().hash(_results),
+  );
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EpisodeResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EpisodeResponseImplCopyWith<_$EpisodeResponseImpl> get copyWith =>
       __$$EpisodeResponseImplCopyWithImpl<_$EpisodeResponseImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$EpisodeResponseImplToJson(
-      this,
-    );
+    return _$$EpisodeResponseImplToJson(this);
   }
 }
 
 abstract class _EpisodeResponse implements EpisodeResponse {
-  const factory _EpisodeResponse(
-      {final String? message,
-      final List<EpisodeDetailResponse>? results}) = _$EpisodeResponseImpl;
+  const factory _EpisodeResponse({
+    final String? message,
+    final List<EpisodeDetailResponse>? results,
+  }) = _$EpisodeResponseImpl;
 
   factory _EpisodeResponse.fromJson(Map<String, dynamic> json) =
       _$EpisodeResponseImpl.fromJson;
@@ -174,14 +194,18 @@ abstract class _EpisodeResponse implements EpisodeResponse {
   String? get message;
   @override
   List<EpisodeDetailResponse>? get results;
+
+  /// Create a copy of EpisodeResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EpisodeResponseImplCopyWith<_$EpisodeResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 EpisodeDetailResponse _$EpisodeDetailResponseFromJson(
-    Map<String, dynamic> json) {
+  Map<String, dynamic> json,
+) {
   return _EpisodeDetailResponse.fromJson(json);
 }
 
@@ -196,30 +220,38 @@ mixin _$EpisodeDetailResponse {
   @JsonKey(name: 'characters')
   List<String>? get characterList => throw _privateConstructorUsedError;
 
+  /// Serializes this EpisodeDetailResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EpisodeDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EpisodeDetailResponseCopyWith<EpisodeDetailResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $EpisodeDetailResponseCopyWith<$Res> {
-  factory $EpisodeDetailResponseCopyWith(EpisodeDetailResponse value,
-          $Res Function(EpisodeDetailResponse) then) =
-      _$EpisodeDetailResponseCopyWithImpl<$Res, EpisodeDetailResponse>;
+  factory $EpisodeDetailResponseCopyWith(
+    EpisodeDetailResponse value,
+    $Res Function(EpisodeDetailResponse) then,
+  ) = _$EpisodeDetailResponseCopyWithImpl<$Res, EpisodeDetailResponse>;
   @useResult
-  $Res call(
-      {int? id,
-      String? name,
-      @JsonKey(name: 'air_date') String? airDate,
-      String? episode,
-      String? created,
-      @JsonKey(name: 'characters') List<String>? characterList});
+  $Res call({
+    int? id,
+    String? name,
+    @JsonKey(name: 'air_date') String? airDate,
+    String? episode,
+    String? created,
+    @JsonKey(name: 'characters') List<String>? characterList,
+  });
 }
 
 /// @nodoc
-class _$EpisodeDetailResponseCopyWithImpl<$Res,
-        $Val extends EpisodeDetailResponse>
+class _$EpisodeDetailResponseCopyWithImpl<
+  $Res,
+  $Val extends EpisodeDetailResponse
+>
     implements $EpisodeDetailResponseCopyWith<$Res> {
   _$EpisodeDetailResponseCopyWithImpl(this._value, this._then);
 
@@ -228,6 +260,8 @@ class _$EpisodeDetailResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EpisodeDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -238,32 +272,41 @@ class _$EpisodeDetailResponseCopyWithImpl<$Res,
     Object? created = freezed,
     Object? characterList = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      airDate: freezed == airDate
-          ? _value.airDate
-          : airDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      episode: freezed == episode
-          ? _value.episode
-          : episode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      created: freezed == created
-          ? _value.created
-          : created // ignore: cast_nullable_to_non_nullable
-              as String?,
-      characterList: freezed == characterList
-          ? _value.characterList
-          : characterList // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            name:
+                freezed == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            airDate:
+                freezed == airDate
+                    ? _value.airDate
+                    : airDate // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            episode:
+                freezed == episode
+                    ? _value.episode
+                    : episode // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            created:
+                freezed == created
+                    ? _value.created
+                    : created // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            characterList:
+                freezed == characterList
+                    ? _value.characterList
+                    : characterList // ignore: cast_nullable_to_non_nullable
+                        as List<String>?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -271,29 +314,33 @@ class _$EpisodeDetailResponseCopyWithImpl<$Res,
 abstract class _$$EpisodeDetailResponseImplCopyWith<$Res>
     implements $EpisodeDetailResponseCopyWith<$Res> {
   factory _$$EpisodeDetailResponseImplCopyWith(
-          _$EpisodeDetailResponseImpl value,
-          $Res Function(_$EpisodeDetailResponseImpl) then) =
-      __$$EpisodeDetailResponseImplCopyWithImpl<$Res>;
+    _$EpisodeDetailResponseImpl value,
+    $Res Function(_$EpisodeDetailResponseImpl) then,
+  ) = __$$EpisodeDetailResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int? id,
-      String? name,
-      @JsonKey(name: 'air_date') String? airDate,
-      String? episode,
-      String? created,
-      @JsonKey(name: 'characters') List<String>? characterList});
+  $Res call({
+    int? id,
+    String? name,
+    @JsonKey(name: 'air_date') String? airDate,
+    String? episode,
+    String? created,
+    @JsonKey(name: 'characters') List<String>? characterList,
+  });
 }
 
 /// @nodoc
 class __$$EpisodeDetailResponseImplCopyWithImpl<$Res>
-    extends _$EpisodeDetailResponseCopyWithImpl<$Res,
-        _$EpisodeDetailResponseImpl>
+    extends
+        _$EpisodeDetailResponseCopyWithImpl<$Res, _$EpisodeDetailResponseImpl>
     implements _$$EpisodeDetailResponseImplCopyWith<$Res> {
-  __$$EpisodeDetailResponseImplCopyWithImpl(_$EpisodeDetailResponseImpl _value,
-      $Res Function(_$EpisodeDetailResponseImpl) _then)
-      : super(_value, _then);
+  __$$EpisodeDetailResponseImplCopyWithImpl(
+    _$EpisodeDetailResponseImpl _value,
+    $Res Function(_$EpisodeDetailResponseImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of EpisodeDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -304,46 +351,54 @@ class __$$EpisodeDetailResponseImplCopyWithImpl<$Res>
     Object? created = freezed,
     Object? characterList = freezed,
   }) {
-    return _then(_$EpisodeDetailResponseImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      airDate: freezed == airDate
-          ? _value.airDate
-          : airDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      episode: freezed == episode
-          ? _value.episode
-          : episode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      created: freezed == created
-          ? _value.created
-          : created // ignore: cast_nullable_to_non_nullable
-              as String?,
-      characterList: freezed == characterList
-          ? _value._characterList
-          : characterList // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ));
+    return _then(
+      _$EpisodeDetailResponseImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        name:
+            freezed == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        airDate:
+            freezed == airDate
+                ? _value.airDate
+                : airDate // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        episode:
+            freezed == episode
+                ? _value.episode
+                : episode // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        created:
+            freezed == created
+                ? _value.created
+                : created // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        characterList:
+            freezed == characterList
+                ? _value._characterList
+                : characterList // ignore: cast_nullable_to_non_nullable
+                    as List<String>?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$EpisodeDetailResponseImpl implements _EpisodeDetailResponse {
-  const _$EpisodeDetailResponseImpl(
-      {this.id,
-      this.name,
-      @JsonKey(name: 'air_date') this.airDate,
-      this.episode,
-      this.created,
-      @JsonKey(name: 'characters') final List<String>? characterList})
-      : _characterList = characterList;
+  const _$EpisodeDetailResponseImpl({
+    this.id,
+    this.name,
+    @JsonKey(name: 'air_date') this.airDate,
+    this.episode,
+    this.created,
+    @JsonKey(name: 'characters') final List<String>? characterList,
+  }) : _characterList = characterList;
 
   factory _$EpisodeDetailResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$EpisodeDetailResponseImplFromJson(json);
@@ -385,39 +440,51 @@ class _$EpisodeDetailResponseImpl implements _EpisodeDetailResponse {
             (identical(other.airDate, airDate) || other.airDate == airDate) &&
             (identical(other.episode, episode) || other.episode == episode) &&
             (identical(other.created, created) || other.created == created) &&
-            const DeepCollectionEquality()
-                .equals(other._characterList, _characterList));
+            const DeepCollectionEquality().equals(
+              other._characterList,
+              _characterList,
+            ));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, airDate, episode,
-      created, const DeepCollectionEquality().hash(_characterList));
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    name,
+    airDate,
+    episode,
+    created,
+    const DeepCollectionEquality().hash(_characterList),
+  );
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EpisodeDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EpisodeDetailResponseImplCopyWith<_$EpisodeDetailResponseImpl>
-      get copyWith => __$$EpisodeDetailResponseImplCopyWithImpl<
-          _$EpisodeDetailResponseImpl>(this, _$identity);
+  get copyWith =>
+      __$$EpisodeDetailResponseImplCopyWithImpl<_$EpisodeDetailResponseImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$EpisodeDetailResponseImplToJson(
-      this,
-    );
+    return _$$EpisodeDetailResponseImplToJson(this);
   }
 }
 
 abstract class _EpisodeDetailResponse implements EpisodeDetailResponse {
-  const factory _EpisodeDetailResponse(
-          {final int? id,
-          final String? name,
-          @JsonKey(name: 'air_date') final String? airDate,
-          final String? episode,
-          final String? created,
-          @JsonKey(name: 'characters') final List<String>? characterList}) =
-      _$EpisodeDetailResponseImpl;
+  const factory _EpisodeDetailResponse({
+    final int? id,
+    final String? name,
+    @JsonKey(name: 'air_date') final String? airDate,
+    final String? episode,
+    final String? created,
+    @JsonKey(name: 'characters') final List<String>? characterList,
+  }) = _$EpisodeDetailResponseImpl;
 
   factory _EpisodeDetailResponse.fromJson(Map<String, dynamic> json) =
       _$EpisodeDetailResponseImpl.fromJson;
@@ -436,8 +503,11 @@ abstract class _EpisodeDetailResponse implements EpisodeDetailResponse {
   @override
   @JsonKey(name: 'characters')
   List<String>? get characterList;
+
+  /// Create a copy of EpisodeDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EpisodeDetailResponseImplCopyWith<_$EpisodeDetailResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

@@ -11,21 +11,45 @@ class CharacterRepositoryImpl implements CharacterRepository {
   CharacterRepositoryImpl(this.network);
 
   @override
-  Stream<RequestState<CharacterDomainModel>> getAllCharacter(
-      String name, String status, String species, String type, String gender, int page) {
+  Stream<RequestState<CharacterDomainModel>> getAllCharacter(String name,
+      String status,
+      String species,
+      String type,
+      String gender,
+      int page,) {
     return apiRequest<CharacterResponse, CharacterDomainModel>(
-      request: () => network.dio.get('/character', queryParameters: {
-        'name': name,
-        'status': status,
-        'species': species,
-        'type': type,
-        'gender': gender,
-        'page': page
-      }),
+      request:
+          () => network.dio.get(
+            '/character',
+            queryParameters: {
+              'name': name,
+              'status': status,
+              'species': species,
+              'type': type,
+              'gender': gender,
+              'page': page,
+            },
+          ),
       fromJson: (json) => CharacterResponse.fromJson(json),
       toDomain: (res) => res.toDomain(),
-      copyWithSuccessMessage: (domain) =>
-          domain.copyWith(message: 'Success Get All Character'),
+      copyWithSuccessMessage:
+          (domain) => domain.copyWith(message: 'Success Get All Character'),
+    );
+  }
+
+  @override
+  Stream<RequestState<List<CharacterDetailDomainModel>>> getCharacterById(
+    String id,
+  ) {
+    print("MASUK API HTTP");
+    return apiRequest<CharacterResponse, List<CharacterDetailDomainModel>>(
+      request: () => network.dio.get('/character/$id'),
+      fromJson: (json) {
+        print("JSON Input: $json");
+        return CharacterResponse.fromJson(json);
+      },
+      toDomain: (res) => res.toListDetailDomain(),
+      copyWithSuccessMessage: (domain) => domain,
     );
   }
 }

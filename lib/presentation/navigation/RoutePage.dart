@@ -4,9 +4,7 @@ final RouteObserver<ModalRoute> routeObserver = RouteObserver<ModalRoute>();
 
 enum RoutePage {
   splash,
-  home,
-  about
-}
+  home, about, episodeDetail }
 
 extension RoutePageExtension on RoutePage {
   String get path {
@@ -17,6 +15,8 @@ extension RoutePageExtension on RoutePage {
         return '/home';
       case RoutePage.about:
         return '/about';
+      case RoutePage.episodeDetail:
+        return '/detail/episode';
     }
   }
 }

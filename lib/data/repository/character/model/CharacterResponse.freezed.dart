@@ -12,7 +12,8 @@ part of 'CharacterResponse.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 CharacterResponse _$CharacterResponseFromJson(Map<String, dynamic> json) {
   return _CharacterResponse.fromJson(json);
@@ -24,17 +25,22 @@ mixin _$CharacterResponse {
   List<CharacterDetailResponse>? get results =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this CharacterResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CharacterResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CharacterResponseCopyWith<CharacterResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CharacterResponseCopyWith<$Res> {
-  factory $CharacterResponseCopyWith(
-          CharacterResponse value, $Res Function(CharacterResponse) then) =
-      _$CharacterResponseCopyWithImpl<$Res, CharacterResponse>;
+  factory $CharacterResponseCopyWith(CharacterResponse value,
+      $Res Function(CharacterResponse) then,) = _$CharacterResponseCopyWithImpl<
+      $Res,
+      CharacterResponse>;
   @useResult
   $Res call({String? message, List<CharacterDetailResponse>? results});
 }
@@ -49,31 +55,36 @@ class _$CharacterResponseCopyWithImpl<$Res, $Val extends CharacterResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CharacterResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? message = freezed,
-    Object? results = freezed,
-  }) {
-    return _then(_value.copyWith(
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      results: freezed == results
-          ? _value.results
-          : results // ignore: cast_nullable_to_non_nullable
-              as List<CharacterDetailResponse>?,
-    ) as $Val);
+  $Res call({Object? message = freezed, Object? results = freezed}) {
+    return _then(
+      _value.copyWith(
+            message:
+                freezed == message
+                    ? _value.message
+                    : message // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            results:
+                freezed == results
+                    ? _value.results
+                    : results // ignore: cast_nullable_to_non_nullable
+                        as List<CharacterDetailResponse>?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$CharacterResponseImplCopyWith<$Res>
     implements $CharacterResponseCopyWith<$Res> {
-  factory _$$CharacterResponseImplCopyWith(_$CharacterResponseImpl value,
-          $Res Function(_$CharacterResponseImpl) then) =
-      __$$CharacterResponseImplCopyWithImpl<$Res>;
+  factory _$$CharacterResponseImplCopyWith(
+    _$CharacterResponseImpl value,
+    $Res Function(_$CharacterResponseImpl) then,
+  ) = __$$CharacterResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? message, List<CharacterDetailResponse>? results});
@@ -83,35 +94,40 @@ abstract class _$$CharacterResponseImplCopyWith<$Res>
 class __$$CharacterResponseImplCopyWithImpl<$Res>
     extends _$CharacterResponseCopyWithImpl<$Res, _$CharacterResponseImpl>
     implements _$$CharacterResponseImplCopyWith<$Res> {
-  __$$CharacterResponseImplCopyWithImpl(_$CharacterResponseImpl _value,
-      $Res Function(_$CharacterResponseImpl) _then)
-      : super(_value, _then);
+  __$$CharacterResponseImplCopyWithImpl(
+    _$CharacterResponseImpl _value,
+    $Res Function(_$CharacterResponseImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of CharacterResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? message = freezed,
-    Object? results = freezed,
-  }) {
-    return _then(_$CharacterResponseImpl(
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      results: freezed == results
-          ? _value._results
-          : results // ignore: cast_nullable_to_non_nullable
-              as List<CharacterDetailResponse>?,
-    ));
+  $Res call({Object? message = freezed, Object? results = freezed}) {
+    return _then(
+      _$CharacterResponseImpl(
+        message:
+            freezed == message
+                ? _value.message
+                : message // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        results:
+            freezed == results
+                ? _value._results
+                : results // ignore: cast_nullable_to_non_nullable
+                    as List<CharacterDetailResponse>?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$CharacterResponseImpl implements _CharacterResponse {
-  const _$CharacterResponseImpl(
-      {this.message, final List<CharacterDetailResponse>? results})
-      : _results = results;
+  const _$CharacterResponseImpl({
+    this.message,
+    final List<CharacterDetailResponse>? results,
+  }) : _results = results;
 
   factory _$CharacterResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$CharacterResponseImplFromJson(json);
@@ -142,30 +158,36 @@ class _$CharacterResponseImpl implements _CharacterResponse {
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, message, const DeepCollectionEquality().hash(_results));
+    runtimeType,
+    message,
+    const DeepCollectionEquality().hash(_results),
+  );
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CharacterResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CharacterResponseImplCopyWith<_$CharacterResponseImpl> get copyWith =>
       __$$CharacterResponseImplCopyWithImpl<_$CharacterResponseImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CharacterResponseImplToJson(
-      this,
-    );
+    return _$$CharacterResponseImplToJson(this);
   }
 }
 
 abstract class _CharacterResponse implements CharacterResponse {
-  const factory _CharacterResponse(
-      {final String? message,
-      final List<CharacterDetailResponse>? results}) = _$CharacterResponseImpl;
+  const factory _CharacterResponse({
+    final String? message,
+    final List<CharacterDetailResponse>? results,
+  }) = _$CharacterResponseImpl;
 
   factory _CharacterResponse.fromJson(Map<String, dynamic> json) =
       _$CharacterResponseImpl.fromJson;
@@ -174,14 +196,18 @@ abstract class _CharacterResponse implements CharacterResponse {
   String? get message;
   @override
   List<CharacterDetailResponse>? get results;
+
+  /// Create a copy of CharacterResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CharacterResponseImplCopyWith<_$CharacterResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 CharacterDetailResponse _$CharacterDetailResponseFromJson(
-    Map<String, dynamic> json) {
+  Map<String, dynamic> json,
+) {
   return _CharacterDetailResponse.fromJson(json);
 }
 
@@ -200,37 +226,45 @@ mixin _$CharacterDetailResponse {
   String? get image => throw _privateConstructorUsedError;
   List<String>? get episode => throw _privateConstructorUsedError;
 
+  /// Serializes this CharacterDetailResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CharacterDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CharacterDetailResponseCopyWith<CharacterDetailResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CharacterDetailResponseCopyWith<$Res> {
-  factory $CharacterDetailResponseCopyWith(CharacterDetailResponse value,
-          $Res Function(CharacterDetailResponse) then) =
-      _$CharacterDetailResponseCopyWithImpl<$Res, CharacterDetailResponse>;
+  factory $CharacterDetailResponseCopyWith(
+    CharacterDetailResponse value,
+    $Res Function(CharacterDetailResponse) then,
+  ) = _$CharacterDetailResponseCopyWithImpl<$Res, CharacterDetailResponse>;
   @useResult
-  $Res call(
-      {int? id,
-      String? name,
-      String? status,
-      String? species,
-      String? type,
-      String? gender,
-      CharacterDetailOriginResponse? origin,
-      CharacterDetailLocationResponse? location,
-      String? image,
-      List<String>? episode});
+  $Res call({
+    int? id,
+    String? name,
+    String? status,
+    String? species,
+    String? type,
+    String? gender,
+    CharacterDetailOriginResponse? origin,
+    CharacterDetailLocationResponse? location,
+    String? image,
+    List<String>? episode,
+  });
 
   $CharacterDetailOriginResponseCopyWith<$Res>? get origin;
   $CharacterDetailLocationResponseCopyWith<$Res>? get location;
 }
 
 /// @nodoc
-class _$CharacterDetailResponseCopyWithImpl<$Res,
-        $Val extends CharacterDetailResponse>
+class _$CharacterDetailResponseCopyWithImpl<
+  $Res,
+  $Val extends CharacterDetailResponse
+>
     implements $CharacterDetailResponseCopyWith<$Res> {
   _$CharacterDetailResponseCopyWithImpl(this._value, this._then);
 
@@ -239,6 +273,8 @@ class _$CharacterDetailResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CharacterDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -253,50 +289,65 @@ class _$CharacterDetailResponseCopyWithImpl<$Res,
     Object? image = freezed,
     Object? episode = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      species: freezed == species
-          ? _value.species
-          : species // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      gender: freezed == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
-      origin: freezed == origin
-          ? _value.origin
-          : origin // ignore: cast_nullable_to_non_nullable
-              as CharacterDetailOriginResponse?,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as CharacterDetailLocationResponse?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      episode: freezed == episode
-          ? _value.episode
-          : episode // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            name:
+                freezed == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            status:
+                freezed == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            species:
+                freezed == species
+                    ? _value.species
+                    : species // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            type:
+                freezed == type
+                    ? _value.type
+                    : type // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            gender:
+                freezed == gender
+                    ? _value.gender
+                    : gender // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            origin:
+                freezed == origin
+                    ? _value.origin
+                    : origin // ignore: cast_nullable_to_non_nullable
+                        as CharacterDetailOriginResponse?,
+            location:
+                freezed == location
+                    ? _value.location
+                    : location // ignore: cast_nullable_to_non_nullable
+                        as CharacterDetailLocationResponse?,
+            image:
+                freezed == image
+                    ? _value.image
+                    : image // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            episode:
+                freezed == episode
+                    ? _value.episode
+                    : episode // ignore: cast_nullable_to_non_nullable
+                        as List<String>?,
+          )
+          as $Val,
+    );
   }
 
+  /// Create a copy of CharacterDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CharacterDetailOriginResponseCopyWith<$Res>? get origin {
@@ -304,12 +355,15 @@ class _$CharacterDetailResponseCopyWithImpl<$Res,
       return null;
     }
 
-    return $CharacterDetailOriginResponseCopyWith<$Res>(_value.origin!,
-        (value) {
+    return $CharacterDetailOriginResponseCopyWith<$Res>(_value.origin!, (
+      value,
+    ) {
       return _then(_value.copyWith(origin: value) as $Val);
     });
   }
 
+  /// Create a copy of CharacterDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CharacterDetailLocationResponseCopyWith<$Res>? get location {
@@ -317,8 +371,9 @@ class _$CharacterDetailResponseCopyWithImpl<$Res,
       return null;
     }
 
-    return $CharacterDetailLocationResponseCopyWith<$Res>(_value.location!,
-        (value) {
+    return $CharacterDetailLocationResponseCopyWith<$Res>(_value.location!, (
+      value,
+    ) {
       return _then(_value.copyWith(location: value) as $Val);
     });
   }
@@ -328,22 +383,23 @@ class _$CharacterDetailResponseCopyWithImpl<$Res,
 abstract class _$$CharacterDetailResponseImplCopyWith<$Res>
     implements $CharacterDetailResponseCopyWith<$Res> {
   factory _$$CharacterDetailResponseImplCopyWith(
-          _$CharacterDetailResponseImpl value,
-          $Res Function(_$CharacterDetailResponseImpl) then) =
-      __$$CharacterDetailResponseImplCopyWithImpl<$Res>;
+    _$CharacterDetailResponseImpl value,
+    $Res Function(_$CharacterDetailResponseImpl) then,
+  ) = __$$CharacterDetailResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int? id,
-      String? name,
-      String? status,
-      String? species,
-      String? type,
-      String? gender,
-      CharacterDetailOriginResponse? origin,
-      CharacterDetailLocationResponse? location,
-      String? image,
-      List<String>? episode});
+  $Res call({
+    int? id,
+    String? name,
+    String? status,
+    String? species,
+    String? type,
+    String? gender,
+    CharacterDetailOriginResponse? origin,
+    CharacterDetailLocationResponse? location,
+    String? image,
+    List<String>? episode,
+  });
 
   @override
   $CharacterDetailOriginResponseCopyWith<$Res>? get origin;
@@ -353,14 +409,19 @@ abstract class _$$CharacterDetailResponseImplCopyWith<$Res>
 
 /// @nodoc
 class __$$CharacterDetailResponseImplCopyWithImpl<$Res>
-    extends _$CharacterDetailResponseCopyWithImpl<$Res,
-        _$CharacterDetailResponseImpl>
+    extends
+        _$CharacterDetailResponseCopyWithImpl<
+          $Res,
+          _$CharacterDetailResponseImpl
+        >
     implements _$$CharacterDetailResponseImplCopyWith<$Res> {
   __$$CharacterDetailResponseImplCopyWithImpl(
-      _$CharacterDetailResponseImpl _value,
-      $Res Function(_$CharacterDetailResponseImpl) _then)
-      : super(_value, _then);
+    _$CharacterDetailResponseImpl _value,
+    $Res Function(_$CharacterDetailResponseImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of CharacterDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -375,66 +436,78 @@ class __$$CharacterDetailResponseImplCopyWithImpl<$Res>
     Object? image = freezed,
     Object? episode = freezed,
   }) {
-    return _then(_$CharacterDetailResponseImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      species: freezed == species
-          ? _value.species
-          : species // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      gender: freezed == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
-      origin: freezed == origin
-          ? _value.origin
-          : origin // ignore: cast_nullable_to_non_nullable
-              as CharacterDetailOriginResponse?,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as CharacterDetailLocationResponse?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      episode: freezed == episode
-          ? _value._episode
-          : episode // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ));
+    return _then(
+      _$CharacterDetailResponseImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        name:
+            freezed == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        status:
+            freezed == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        species:
+            freezed == species
+                ? _value.species
+                : species // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        type:
+            freezed == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        gender:
+            freezed == gender
+                ? _value.gender
+                : gender // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        origin:
+            freezed == origin
+                ? _value.origin
+                : origin // ignore: cast_nullable_to_non_nullable
+                    as CharacterDetailOriginResponse?,
+        location:
+            freezed == location
+                ? _value.location
+                : location // ignore: cast_nullable_to_non_nullable
+                    as CharacterDetailLocationResponse?,
+        image:
+            freezed == image
+                ? _value.image
+                : image // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        episode:
+            freezed == episode
+                ? _value._episode
+                : episode // ignore: cast_nullable_to_non_nullable
+                    as List<String>?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$CharacterDetailResponseImpl implements _CharacterDetailResponse {
-  const _$CharacterDetailResponseImpl(
-      {this.id,
-      this.name,
-      this.status,
-      this.species,
-      this.type,
-      this.gender,
-      this.origin,
-      this.location,
-      this.image,
-      final List<String>? episode})
-      : _episode = episode;
+  const _$CharacterDetailResponseImpl({
+    this.id,
+    this.name,
+    this.status,
+    this.species,
+    this.type,
+    this.gender,
+    this.origin,
+    this.location,
+    this.image,
+    final List<String>? episode,
+  }) : _episode = episode;
 
   factory _$CharacterDetailResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$CharacterDetailResponseImplFromJson(json);
@@ -490,48 +563,51 @@ class _$CharacterDetailResponseImpl implements _CharacterDetailResponse {
             const DeepCollectionEquality().equals(other._episode, _episode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      status,
-      species,
-      type,
-      gender,
-      origin,
-      location,
-      image,
-      const DeepCollectionEquality().hash(_episode));
+    runtimeType,
+    id,
+    name,
+    status,
+    species,
+    type,
+    gender,
+    origin,
+    location,
+    image,
+    const DeepCollectionEquality().hash(_episode),
+  );
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CharacterDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CharacterDetailResponseImplCopyWith<_$CharacterDetailResponseImpl>
-      get copyWith => __$$CharacterDetailResponseImplCopyWithImpl<
-          _$CharacterDetailResponseImpl>(this, _$identity);
+  get copyWith => __$$CharacterDetailResponseImplCopyWithImpl<
+    _$CharacterDetailResponseImpl
+  >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CharacterDetailResponseImplToJson(
-      this,
-    );
+    return _$$CharacterDetailResponseImplToJson(this);
   }
 }
 
 abstract class _CharacterDetailResponse implements CharacterDetailResponse {
-  const factory _CharacterDetailResponse(
-      {final int? id,
-      final String? name,
-      final String? status,
-      final String? species,
-      final String? type,
-      final String? gender,
-      final CharacterDetailOriginResponse? origin,
-      final CharacterDetailLocationResponse? location,
-      final String? image,
-      final List<String>? episode}) = _$CharacterDetailResponseImpl;
+  const factory _CharacterDetailResponse({
+    final int? id,
+    final String? name,
+    final String? status,
+    final String? species,
+    final String? type,
+    final String? gender,
+    final CharacterDetailOriginResponse? origin,
+    final CharacterDetailLocationResponse? location,
+    final String? image,
+    final List<String>? episode,
+  }) = _$CharacterDetailResponseImpl;
 
   factory _CharacterDetailResponse.fromJson(Map<String, dynamic> json) =
       _$CharacterDetailResponseImpl.fromJson;
@@ -556,14 +632,18 @@ abstract class _CharacterDetailResponse implements CharacterDetailResponse {
   String? get image;
   @override
   List<String>? get episode;
+
+  /// Create a copy of CharacterDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CharacterDetailResponseImplCopyWith<_$CharacterDetailResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 CharacterDetailOriginResponse _$CharacterDetailOriginResponseFromJson(
-    Map<String, dynamic> json) {
+  Map<String, dynamic> json,
+) {
   return _CharacterDetailOriginResponse.fromJson(json);
 }
 
@@ -572,26 +652,35 @@ mixin _$CharacterDetailOriginResponse {
   String? get name => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
 
+  /// Serializes this CharacterDetailOriginResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CharacterDetailOriginResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CharacterDetailOriginResponseCopyWith<CharacterDetailOriginResponse>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CharacterDetailOriginResponseCopyWith<$Res> {
   factory $CharacterDetailOriginResponseCopyWith(
-          CharacterDetailOriginResponse value,
-          $Res Function(CharacterDetailOriginResponse) then) =
-      _$CharacterDetailOriginResponseCopyWithImpl<$Res,
-          CharacterDetailOriginResponse>;
+    CharacterDetailOriginResponse value,
+    $Res Function(CharacterDetailOriginResponse) then,
+  ) =
+      _$CharacterDetailOriginResponseCopyWithImpl<
+        $Res,
+        CharacterDetailOriginResponse
+      >;
   @useResult
   $Res call({String? name, String? url});
 }
 
 /// @nodoc
-class _$CharacterDetailOriginResponseCopyWithImpl<$Res,
-        $Val extends CharacterDetailOriginResponse>
+class _$CharacterDetailOriginResponseCopyWithImpl<
+  $Res,
+  $Val extends CharacterDetailOriginResponse
+>
     implements $CharacterDetailOriginResponseCopyWith<$Res> {
   _$CharacterDetailOriginResponseCopyWithImpl(this._value, this._then);
 
@@ -600,22 +689,26 @@ class _$CharacterDetailOriginResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CharacterDetailOriginResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? name = freezed,
-    Object? url = freezed,
-  }) {
-    return _then(_value.copyWith(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  $Res call({Object? name = freezed, Object? url = freezed}) {
+    return _then(
+      _value.copyWith(
+            name:
+                freezed == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            url:
+                freezed == url
+                    ? _value.url
+                    : url // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -623,9 +716,9 @@ class _$CharacterDetailOriginResponseCopyWithImpl<$Res,
 abstract class _$$CharacterDetailOriginResponseImplCopyWith<$Res>
     implements $CharacterDetailOriginResponseCopyWith<$Res> {
   factory _$$CharacterDetailOriginResponseImplCopyWith(
-          _$CharacterDetailOriginResponseImpl value,
-          $Res Function(_$CharacterDetailOriginResponseImpl) then) =
-      __$$CharacterDetailOriginResponseImplCopyWithImpl<$Res>;
+    _$CharacterDetailOriginResponseImpl value,
+    $Res Function(_$CharacterDetailOriginResponseImpl) then,
+  ) = __$$CharacterDetailOriginResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? name, String? url});
@@ -633,30 +726,36 @@ abstract class _$$CharacterDetailOriginResponseImplCopyWith<$Res>
 
 /// @nodoc
 class __$$CharacterDetailOriginResponseImplCopyWithImpl<$Res>
-    extends _$CharacterDetailOriginResponseCopyWithImpl<$Res,
-        _$CharacterDetailOriginResponseImpl>
+    extends
+        _$CharacterDetailOriginResponseCopyWithImpl<
+          $Res,
+          _$CharacterDetailOriginResponseImpl
+        >
     implements _$$CharacterDetailOriginResponseImplCopyWith<$Res> {
   __$$CharacterDetailOriginResponseImplCopyWithImpl(
-      _$CharacterDetailOriginResponseImpl _value,
-      $Res Function(_$CharacterDetailOriginResponseImpl) _then)
-      : super(_value, _then);
+    _$CharacterDetailOriginResponseImpl _value,
+    $Res Function(_$CharacterDetailOriginResponseImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of CharacterDetailOriginResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? name = freezed,
-    Object? url = freezed,
-  }) {
-    return _then(_$CharacterDetailOriginResponseImpl(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $Res call({Object? name = freezed, Object? url = freezed}) {
+    return _then(
+      _$CharacterDetailOriginResponseImpl(
+        name:
+            freezed == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        url:
+            freezed == url
+                ? _value.url
+                : url // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
@@ -667,8 +766,8 @@ class _$CharacterDetailOriginResponseImpl
   const _$CharacterDetailOriginResponseImpl({this.name, this.url});
 
   factory _$CharacterDetailOriginResponseImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$CharacterDetailOriginResponseImplFromJson(json);
+    Map<String, dynamic> json,
+  ) => _$$CharacterDetailOriginResponseImplFromJson(json);
 
   @override
   final String? name;
@@ -689,31 +788,34 @@ class _$CharacterDetailOriginResponseImpl
             (identical(other.url, url) || other.url == url));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, url);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CharacterDetailOriginResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CharacterDetailOriginResponseImplCopyWith<
-          _$CharacterDetailOriginResponseImpl>
-      get copyWith => __$$CharacterDetailOriginResponseImplCopyWithImpl<
-          _$CharacterDetailOriginResponseImpl>(this, _$identity);
+    _$CharacterDetailOriginResponseImpl
+  >
+  get copyWith => __$$CharacterDetailOriginResponseImplCopyWithImpl<
+    _$CharacterDetailOriginResponseImpl
+  >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CharacterDetailOriginResponseImplToJson(
-      this,
-    );
+    return _$$CharacterDetailOriginResponseImplToJson(this);
   }
 }
 
 abstract class _CharacterDetailOriginResponse
     implements CharacterDetailOriginResponse {
-  const factory _CharacterDetailOriginResponse(
-      {final String? name,
-      final String? url}) = _$CharacterDetailOriginResponseImpl;
+  const factory _CharacterDetailOriginResponse({
+    final String? name,
+    final String? url,
+  }) = _$CharacterDetailOriginResponseImpl;
 
   factory _CharacterDetailOriginResponse.fromJson(Map<String, dynamic> json) =
       _$CharacterDetailOriginResponseImpl.fromJson;
@@ -722,15 +824,20 @@ abstract class _CharacterDetailOriginResponse
   String? get name;
   @override
   String? get url;
+
+  /// Create a copy of CharacterDetailOriginResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CharacterDetailOriginResponseImplCopyWith<
-          _$CharacterDetailOriginResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+    _$CharacterDetailOriginResponseImpl
+  >
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 CharacterDetailLocationResponse _$CharacterDetailLocationResponseFromJson(
-    Map<String, dynamic> json) {
+  Map<String, dynamic> json,
+) {
   return _CharacterDetailLocationResponse.fromJson(json);
 }
 
@@ -739,26 +846,35 @@ mixin _$CharacterDetailLocationResponse {
   String? get name => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
 
+  /// Serializes this CharacterDetailLocationResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CharacterDetailLocationResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CharacterDetailLocationResponseCopyWith<CharacterDetailLocationResponse>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CharacterDetailLocationResponseCopyWith<$Res> {
   factory $CharacterDetailLocationResponseCopyWith(
-          CharacterDetailLocationResponse value,
-          $Res Function(CharacterDetailLocationResponse) then) =
-      _$CharacterDetailLocationResponseCopyWithImpl<$Res,
-          CharacterDetailLocationResponse>;
+    CharacterDetailLocationResponse value,
+    $Res Function(CharacterDetailLocationResponse) then,
+  ) =
+      _$CharacterDetailLocationResponseCopyWithImpl<
+        $Res,
+        CharacterDetailLocationResponse
+      >;
   @useResult
   $Res call({String? name, String? url});
 }
 
 /// @nodoc
-class _$CharacterDetailLocationResponseCopyWithImpl<$Res,
-        $Val extends CharacterDetailLocationResponse>
+class _$CharacterDetailLocationResponseCopyWithImpl<
+  $Res,
+  $Val extends CharacterDetailLocationResponse
+>
     implements $CharacterDetailLocationResponseCopyWith<$Res> {
   _$CharacterDetailLocationResponseCopyWithImpl(this._value, this._then);
 
@@ -767,22 +883,26 @@ class _$CharacterDetailLocationResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CharacterDetailLocationResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? name = freezed,
-    Object? url = freezed,
-  }) {
-    return _then(_value.copyWith(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  $Res call({Object? name = freezed, Object? url = freezed}) {
+    return _then(
+      _value.copyWith(
+            name:
+                freezed == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            url:
+                freezed == url
+                    ? _value.url
+                    : url // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -790,9 +910,9 @@ class _$CharacterDetailLocationResponseCopyWithImpl<$Res,
 abstract class _$$CharacterDetailLocationResponseImplCopyWith<$Res>
     implements $CharacterDetailLocationResponseCopyWith<$Res> {
   factory _$$CharacterDetailLocationResponseImplCopyWith(
-          _$CharacterDetailLocationResponseImpl value,
-          $Res Function(_$CharacterDetailLocationResponseImpl) then) =
-      __$$CharacterDetailLocationResponseImplCopyWithImpl<$Res>;
+    _$CharacterDetailLocationResponseImpl value,
+    $Res Function(_$CharacterDetailLocationResponseImpl) then,
+  ) = __$$CharacterDetailLocationResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? name, String? url});
@@ -800,30 +920,36 @@ abstract class _$$CharacterDetailLocationResponseImplCopyWith<$Res>
 
 /// @nodoc
 class __$$CharacterDetailLocationResponseImplCopyWithImpl<$Res>
-    extends _$CharacterDetailLocationResponseCopyWithImpl<$Res,
-        _$CharacterDetailLocationResponseImpl>
+    extends
+        _$CharacterDetailLocationResponseCopyWithImpl<
+          $Res,
+          _$CharacterDetailLocationResponseImpl
+        >
     implements _$$CharacterDetailLocationResponseImplCopyWith<$Res> {
   __$$CharacterDetailLocationResponseImplCopyWithImpl(
-      _$CharacterDetailLocationResponseImpl _value,
-      $Res Function(_$CharacterDetailLocationResponseImpl) _then)
-      : super(_value, _then);
+    _$CharacterDetailLocationResponseImpl _value,
+    $Res Function(_$CharacterDetailLocationResponseImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of CharacterDetailLocationResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? name = freezed,
-    Object? url = freezed,
-  }) {
-    return _then(_$CharacterDetailLocationResponseImpl(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $Res call({Object? name = freezed, Object? url = freezed}) {
+    return _then(
+      _$CharacterDetailLocationResponseImpl(
+        name:
+            freezed == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        url:
+            freezed == url
+                ? _value.url
+                : url // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
@@ -834,8 +960,8 @@ class _$CharacterDetailLocationResponseImpl
   const _$CharacterDetailLocationResponseImpl({this.name, this.url});
 
   factory _$CharacterDetailLocationResponseImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$CharacterDetailLocationResponseImplFromJson(json);
+    Map<String, dynamic> json,
+  ) => _$$CharacterDetailLocationResponseImplFromJson(json);
 
   @override
   final String? name;
@@ -856,31 +982,34 @@ class _$CharacterDetailLocationResponseImpl
             (identical(other.url, url) || other.url == url));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, url);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CharacterDetailLocationResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CharacterDetailLocationResponseImplCopyWith<
-          _$CharacterDetailLocationResponseImpl>
-      get copyWith => __$$CharacterDetailLocationResponseImplCopyWithImpl<
-          _$CharacterDetailLocationResponseImpl>(this, _$identity);
+    _$CharacterDetailLocationResponseImpl
+  >
+  get copyWith => __$$CharacterDetailLocationResponseImplCopyWithImpl<
+    _$CharacterDetailLocationResponseImpl
+  >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CharacterDetailLocationResponseImplToJson(
-      this,
-    );
+    return _$$CharacterDetailLocationResponseImplToJson(this);
   }
 }
 
 abstract class _CharacterDetailLocationResponse
     implements CharacterDetailLocationResponse {
-  const factory _CharacterDetailLocationResponse(
-      {final String? name,
-      final String? url}) = _$CharacterDetailLocationResponseImpl;
+  const factory _CharacterDetailLocationResponse({
+    final String? name,
+    final String? url,
+  }) = _$CharacterDetailLocationResponseImpl;
 
   factory _CharacterDetailLocationResponse.fromJson(Map<String, dynamic> json) =
       _$CharacterDetailLocationResponseImpl.fromJson;
@@ -889,9 +1018,13 @@ abstract class _CharacterDetailLocationResponse
   String? get name;
   @override
   String? get url;
+
+  /// Create a copy of CharacterDetailLocationResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CharacterDetailLocationResponseImplCopyWith<
-          _$CharacterDetailLocationResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+    _$CharacterDetailLocationResponseImpl
+  >
+  get copyWith => throw _privateConstructorUsedError;
 }

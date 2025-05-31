@@ -12,23 +12,27 @@ part of 'LocationState.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$LocationState {
   RequestState<LocationDomainModel> get location =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LocationStateCopyWith<LocationState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LocationStateCopyWith<$Res> {
-  factory $LocationStateCopyWith(
-          LocationState value, $Res Function(LocationState) then) =
-      _$LocationStateCopyWithImpl<$Res, LocationState>;
+  factory $LocationStateCopyWith(LocationState value,
+      $Res Function(LocationState) then,) = _$LocationStateCopyWithImpl<
+      $Res,
+      LocationState>;
   @useResult
   $Res call({RequestState<LocationDomainModel> location});
 
@@ -45,24 +49,31 @@ class _$LocationStateCopyWithImpl<$Res, $Val extends LocationState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LocationState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? location = null,
-  }) {
-    return _then(_value.copyWith(
-      location: null == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as RequestState<LocationDomainModel>,
-    ) as $Val);
+  $Res call({Object? location = null}) {
+    return _then(
+      _value.copyWith(
+            location:
+                null == location
+                    ? _value.location
+                    : location // ignore: cast_nullable_to_non_nullable
+                        as RequestState<LocationDomainModel>,
+          )
+          as $Val,
+    );
   }
 
+  /// Create a copy of LocationState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RequestStateCopyWith<LocationDomainModel, $Res> get location {
-    return $RequestStateCopyWith<LocationDomainModel, $Res>(_value.location,
-        (value) {
+    return $RequestStateCopyWith<LocationDomainModel, $Res>(_value.location, (
+      value,
+    ) {
       return _then(_value.copyWith(location: value) as $Val);
     });
   }
@@ -71,9 +82,9 @@ class _$LocationStateCopyWithImpl<$Res, $Val extends LocationState>
 /// @nodoc
 abstract class _$$LocationStateImplCopyWith<$Res>
     implements $LocationStateCopyWith<$Res> {
-  factory _$$LocationStateImplCopyWith(
-          _$LocationStateImpl value, $Res Function(_$LocationStateImpl) then) =
-      __$$LocationStateImplCopyWithImpl<$Res>;
+  factory _$$LocationStateImplCopyWith(_$LocationStateImpl value,
+      $Res Function(_$LocationStateImpl) then,) = __$$LocationStateImplCopyWithImpl<
+      $Res>;
   @override
   @useResult
   $Res call({RequestState<LocationDomainModel> location});
@@ -86,21 +97,23 @@ abstract class _$$LocationStateImplCopyWith<$Res>
 class __$$LocationStateImplCopyWithImpl<$Res>
     extends _$LocationStateCopyWithImpl<$Res, _$LocationStateImpl>
     implements _$$LocationStateImplCopyWith<$Res> {
-  __$$LocationStateImplCopyWithImpl(
-      _$LocationStateImpl _value, $Res Function(_$LocationStateImpl) _then)
-      : super(_value, _then);
+  __$$LocationStateImplCopyWithImpl(_$LocationStateImpl _value,
+      $Res Function(_$LocationStateImpl) _then,) : super(_value, _then);
 
+  /// Create a copy of LocationState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? location = null,
-  }) {
-    return _then(_$LocationStateImpl(
-      location: null == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as RequestState<LocationDomainModel>,
-    ));
+  $Res call({Object? location = null}) {
+    return _then(
+      _$LocationStateImpl(
+        location:
+            null == location
+                ? _value.location
+                : location // ignore: cast_nullable_to_non_nullable
+                    as RequestState<LocationDomainModel>,
+      ),
+    );
   }
 }
 
@@ -130,7 +143,9 @@ class _$LocationStateImpl implements _LocationState {
   @override
   int get hashCode => Object.hash(runtimeType, location);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocationStateImplCopyWith<_$LocationStateImpl> get copyWith =>
@@ -138,13 +153,17 @@ class _$LocationStateImpl implements _LocationState {
 }
 
 abstract class _LocationState implements LocationState {
-  const factory _LocationState(
-      {final RequestState<LocationDomainModel> location}) = _$LocationStateImpl;
+  const factory _LocationState({
+    final RequestState<LocationDomainModel> location,
+  }) = _$LocationStateImpl;
 
   @override
   RequestState<LocationDomainModel> get location;
+
+  /// Create a copy of LocationState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocationStateImplCopyWith<_$LocationStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

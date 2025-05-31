@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rick_and_morty_new/domain/location/model/LocationDomainModel.dart';
+import 'package:rick_and_morty_new/presentation/navigation/RoutePage.dart';
 import 'package:rick_and_morty_new/presentation/pages/location/LocationController.dart';
 import 'package:rick_and_morty_new/presentation/themes/Colors.dart';
 import 'package:rick_and_morty_new/presentation/widgets/InformationCard.dart';
@@ -187,6 +188,10 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
                 title: location.name,
                 description: location.dimension,
                 date: location.type,
+                navigation: () {
+                  Navigator.pushNamed(context, RoutePage.episodeDetail.path,
+                      arguments: location);
+                },
               );
             } else {
               return const Padding(

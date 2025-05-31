@@ -11,8 +11,27 @@ class CharacterResponse with _$CharacterResponse {
     List<CharacterDetailResponse>? results,
   }) = _CharacterResponse;
 
-  factory CharacterResponse.fromJson(Map<String, dynamic> json) =>
-      _$CharacterResponseFromJson(json);
+  // factory CharacterResponse.fromJson(Map<String, dynamic> json) =>
+  //     _$CharacterResponseFromJson(json);
+
+  factory CharacterResponse.fromJson(dynamic json) {
+    if (json is List<dynamic>) {
+      return CharacterResponse.fromListJson(json);
+    }
+    if (json is Map<String, dynamic>) {
+      return _$CharacterResponseFromJson(json);
+    }
+    throw FormatException('Invalid JSON format: $json');
+  }
+
+  factory CharacterResponse.fromListJson(List<dynamic> json) =>
+      CharacterResponse(
+        message: null,
+        results: json
+            .map((item) =>
+            CharacterDetailResponse.fromJson(item as Map<String, dynamic>))
+            .toList(),
+      );
 }
 
 @freezed
@@ -61,6 +80,10 @@ extension CharacterMapper on CharacterResponse {
       message: message ?? '',
       results: results?.map((e) => e.toDomain()).toList() ?? [],
     );
+  }
+
+  List<CharacterDetailDomainModel> toListDetailDomain() {
+    return results?.map((e) => e.toDomain()).toList() ?? [];
   }
 }
 

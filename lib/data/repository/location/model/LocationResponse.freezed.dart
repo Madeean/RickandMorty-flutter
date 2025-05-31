@@ -12,7 +12,8 @@ part of 'LocationResponse.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 LocationResponse _$LocationResponseFromJson(Map<String, dynamic> json) {
   return _LocationResponse.fromJson(json);
@@ -24,17 +25,22 @@ mixin _$LocationResponse {
   List<LocationDetailResponse>? get results =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this LocationResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LocationResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LocationResponseCopyWith<LocationResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LocationResponseCopyWith<$Res> {
-  factory $LocationResponseCopyWith(
-          LocationResponse value, $Res Function(LocationResponse) then) =
-      _$LocationResponseCopyWithImpl<$Res, LocationResponse>;
+  factory $LocationResponseCopyWith(LocationResponse value,
+      $Res Function(LocationResponse) then,) = _$LocationResponseCopyWithImpl<
+      $Res,
+      LocationResponse>;
   @useResult
   $Res call({String? message, List<LocationDetailResponse>? results});
 }
@@ -49,31 +55,36 @@ class _$LocationResponseCopyWithImpl<$Res, $Val extends LocationResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LocationResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? message = freezed,
-    Object? results = freezed,
-  }) {
-    return _then(_value.copyWith(
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      results: freezed == results
-          ? _value.results
-          : results // ignore: cast_nullable_to_non_nullable
-              as List<LocationDetailResponse>?,
-    ) as $Val);
+  $Res call({Object? message = freezed, Object? results = freezed}) {
+    return _then(
+      _value.copyWith(
+            message:
+                freezed == message
+                    ? _value.message
+                    : message // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            results:
+                freezed == results
+                    ? _value.results
+                    : results // ignore: cast_nullable_to_non_nullable
+                        as List<LocationDetailResponse>?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$LocationResponseImplCopyWith<$Res>
     implements $LocationResponseCopyWith<$Res> {
-  factory _$$LocationResponseImplCopyWith(_$LocationResponseImpl value,
-          $Res Function(_$LocationResponseImpl) then) =
-      __$$LocationResponseImplCopyWithImpl<$Res>;
+  factory _$$LocationResponseImplCopyWith(
+    _$LocationResponseImpl value,
+    $Res Function(_$LocationResponseImpl) then,
+  ) = __$$LocationResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? message, List<LocationDetailResponse>? results});
@@ -83,35 +94,40 @@ abstract class _$$LocationResponseImplCopyWith<$Res>
 class __$$LocationResponseImplCopyWithImpl<$Res>
     extends _$LocationResponseCopyWithImpl<$Res, _$LocationResponseImpl>
     implements _$$LocationResponseImplCopyWith<$Res> {
-  __$$LocationResponseImplCopyWithImpl(_$LocationResponseImpl _value,
-      $Res Function(_$LocationResponseImpl) _then)
-      : super(_value, _then);
+  __$$LocationResponseImplCopyWithImpl(
+    _$LocationResponseImpl _value,
+    $Res Function(_$LocationResponseImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of LocationResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? message = freezed,
-    Object? results = freezed,
-  }) {
-    return _then(_$LocationResponseImpl(
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      results: freezed == results
-          ? _value._results
-          : results // ignore: cast_nullable_to_non_nullable
-              as List<LocationDetailResponse>?,
-    ));
+  $Res call({Object? message = freezed, Object? results = freezed}) {
+    return _then(
+      _$LocationResponseImpl(
+        message:
+            freezed == message
+                ? _value.message
+                : message // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        results:
+            freezed == results
+                ? _value._results
+                : results // ignore: cast_nullable_to_non_nullable
+                    as List<LocationDetailResponse>?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LocationResponseImpl implements _LocationResponse {
-  const _$LocationResponseImpl(
-      {this.message, final List<LocationDetailResponse>? results})
-      : _results = results;
+  const _$LocationResponseImpl({
+    this.message,
+    final List<LocationDetailResponse>? results,
+  }) : _results = results;
 
   factory _$LocationResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$LocationResponseImplFromJson(json);
@@ -142,30 +158,36 @@ class _$LocationResponseImpl implements _LocationResponse {
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, message, const DeepCollectionEquality().hash(_results));
+    runtimeType,
+    message,
+    const DeepCollectionEquality().hash(_results),
+  );
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocationResponseImplCopyWith<_$LocationResponseImpl> get copyWith =>
       __$$LocationResponseImplCopyWithImpl<_$LocationResponseImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LocationResponseImplToJson(
-      this,
-    );
+    return _$$LocationResponseImplToJson(this);
   }
 }
 
 abstract class _LocationResponse implements LocationResponse {
-  const factory _LocationResponse(
-      {final String? message,
-      final List<LocationDetailResponse>? results}) = _$LocationResponseImpl;
+  const factory _LocationResponse({
+    final String? message,
+    final List<LocationDetailResponse>? results,
+  }) = _$LocationResponseImpl;
 
   factory _LocationResponse.fromJson(Map<String, dynamic> json) =
       _$LocationResponseImpl.fromJson;
@@ -174,14 +196,18 @@ abstract class _LocationResponse implements LocationResponse {
   String? get message;
   @override
   List<LocationDetailResponse>? get results;
+
+  /// Create a copy of LocationResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocationResponseImplCopyWith<_$LocationResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 LocationDetailResponse _$LocationDetailResponseFromJson(
-    Map<String, dynamic> json) {
+  Map<String, dynamic> json,
+) {
   return _LocationDetailResponse.fromJson(json);
 }
 
@@ -195,31 +221,39 @@ mixin _$LocationDetailResponse {
   String? get url => throw _privateConstructorUsedError;
   List<String>? get residents => throw _privateConstructorUsedError;
 
+  /// Serializes this LocationDetailResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LocationDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LocationDetailResponseCopyWith<LocationDetailResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LocationDetailResponseCopyWith<$Res> {
-  factory $LocationDetailResponseCopyWith(LocationDetailResponse value,
-          $Res Function(LocationDetailResponse) then) =
-      _$LocationDetailResponseCopyWithImpl<$Res, LocationDetailResponse>;
+  factory $LocationDetailResponseCopyWith(
+    LocationDetailResponse value,
+    $Res Function(LocationDetailResponse) then,
+  ) = _$LocationDetailResponseCopyWithImpl<$Res, LocationDetailResponse>;
   @useResult
-  $Res call(
-      {int? id,
-      String? name,
-      String? type,
-      String? dimension,
-      String? created,
-      String? url,
-      List<String>? residents});
+  $Res call({
+    int? id,
+    String? name,
+    String? type,
+    String? dimension,
+    String? created,
+    String? url,
+    List<String>? residents,
+  });
 }
 
 /// @nodoc
-class _$LocationDetailResponseCopyWithImpl<$Res,
-        $Val extends LocationDetailResponse>
+class _$LocationDetailResponseCopyWithImpl<
+  $Res,
+  $Val extends LocationDetailResponse
+>
     implements $LocationDetailResponseCopyWith<$Res> {
   _$LocationDetailResponseCopyWithImpl(this._value, this._then);
 
@@ -228,6 +262,8 @@ class _$LocationDetailResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LocationDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -239,36 +275,46 @@ class _$LocationDetailResponseCopyWithImpl<$Res,
     Object? url = freezed,
     Object? residents = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dimension: freezed == dimension
-          ? _value.dimension
-          : dimension // ignore: cast_nullable_to_non_nullable
-              as String?,
-      created: freezed == created
-          ? _value.created
-          : created // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      residents: freezed == residents
-          ? _value.residents
-          : residents // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            name:
+                freezed == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            type:
+                freezed == type
+                    ? _value.type
+                    : type // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            dimension:
+                freezed == dimension
+                    ? _value.dimension
+                    : dimension // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            created:
+                freezed == created
+                    ? _value.created
+                    : created // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            url:
+                freezed == url
+                    ? _value.url
+                    : url // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            residents:
+                freezed == residents
+                    ? _value.residents
+                    : residents // ignore: cast_nullable_to_non_nullable
+                        as List<String>?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -276,31 +322,34 @@ class _$LocationDetailResponseCopyWithImpl<$Res,
 abstract class _$$LocationDetailResponseImplCopyWith<$Res>
     implements $LocationDetailResponseCopyWith<$Res> {
   factory _$$LocationDetailResponseImplCopyWith(
-          _$LocationDetailResponseImpl value,
-          $Res Function(_$LocationDetailResponseImpl) then) =
-      __$$LocationDetailResponseImplCopyWithImpl<$Res>;
+    _$LocationDetailResponseImpl value,
+    $Res Function(_$LocationDetailResponseImpl) then,
+  ) = __$$LocationDetailResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int? id,
-      String? name,
-      String? type,
-      String? dimension,
-      String? created,
-      String? url,
-      List<String>? residents});
+  $Res call({
+    int? id,
+    String? name,
+    String? type,
+    String? dimension,
+    String? created,
+    String? url,
+    List<String>? residents,
+  });
 }
 
 /// @nodoc
 class __$$LocationDetailResponseImplCopyWithImpl<$Res>
-    extends _$LocationDetailResponseCopyWithImpl<$Res,
-        _$LocationDetailResponseImpl>
+    extends
+        _$LocationDetailResponseCopyWithImpl<$Res, _$LocationDetailResponseImpl>
     implements _$$LocationDetailResponseImplCopyWith<$Res> {
   __$$LocationDetailResponseImplCopyWithImpl(
-      _$LocationDetailResponseImpl _value,
-      $Res Function(_$LocationDetailResponseImpl) _then)
-      : super(_value, _then);
+    _$LocationDetailResponseImpl _value,
+    $Res Function(_$LocationDetailResponseImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of LocationDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -312,51 +361,60 @@ class __$$LocationDetailResponseImplCopyWithImpl<$Res>
     Object? url = freezed,
     Object? residents = freezed,
   }) {
-    return _then(_$LocationDetailResponseImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dimension: freezed == dimension
-          ? _value.dimension
-          : dimension // ignore: cast_nullable_to_non_nullable
-              as String?,
-      created: freezed == created
-          ? _value.created
-          : created // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      residents: freezed == residents
-          ? _value._residents
-          : residents // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ));
+    return _then(
+      _$LocationDetailResponseImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        name:
+            freezed == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        type:
+            freezed == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        dimension:
+            freezed == dimension
+                ? _value.dimension
+                : dimension // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        created:
+            freezed == created
+                ? _value.created
+                : created // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        url:
+            freezed == url
+                ? _value.url
+                : url // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        residents:
+            freezed == residents
+                ? _value._residents
+                : residents // ignore: cast_nullable_to_non_nullable
+                    as List<String>?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LocationDetailResponseImpl implements _LocationDetailResponse {
-  const _$LocationDetailResponseImpl(
-      {this.id,
-      this.name,
-      this.type,
-      this.dimension,
-      this.created,
-      this.url,
-      final List<String>? residents})
-      : _residents = residents;
+  const _$LocationDetailResponseImpl({
+    this.id,
+    this.name,
+    this.type,
+    this.dimension,
+    this.created,
+    this.url,
+    final List<String>? residents,
+  }) : _residents = residents;
 
   factory _$LocationDetailResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$LocationDetailResponseImplFromJson(json);
@@ -400,39 +458,53 @@ class _$LocationDetailResponseImpl implements _LocationDetailResponse {
                 other.dimension == dimension) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.url, url) || other.url == url) &&
-            const DeepCollectionEquality()
-                .equals(other._residents, _residents));
+            const DeepCollectionEquality().equals(
+              other._residents,
+              _residents,
+            ));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, type, dimension,
-      created, url, const DeepCollectionEquality().hash(_residents));
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    name,
+    type,
+    dimension,
+    created,
+    url,
+    const DeepCollectionEquality().hash(_residents),
+  );
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocationDetailResponseImplCopyWith<_$LocationDetailResponseImpl>
-      get copyWith => __$$LocationDetailResponseImplCopyWithImpl<
-          _$LocationDetailResponseImpl>(this, _$identity);
+  get copyWith =>
+      __$$LocationDetailResponseImplCopyWithImpl<_$LocationDetailResponseImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LocationDetailResponseImplToJson(
-      this,
-    );
+    return _$$LocationDetailResponseImplToJson(this);
   }
 }
 
 abstract class _LocationDetailResponse implements LocationDetailResponse {
-  const factory _LocationDetailResponse(
-      {final int? id,
-      final String? name,
-      final String? type,
-      final String? dimension,
-      final String? created,
-      final String? url,
-      final List<String>? residents}) = _$LocationDetailResponseImpl;
+  const factory _LocationDetailResponse({
+    final int? id,
+    final String? name,
+    final String? type,
+    final String? dimension,
+    final String? created,
+    final String? url,
+    final List<String>? residents,
+  }) = _$LocationDetailResponseImpl;
 
   factory _LocationDetailResponse.fromJson(Map<String, dynamic> json) =
       _$LocationDetailResponseImpl.fromJson;
@@ -451,8 +523,11 @@ abstract class _LocationDetailResponse implements LocationDetailResponse {
   String? get url;
   @override
   List<String>? get residents;
+
+  /// Create a copy of LocationDetailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocationDetailResponseImplCopyWith<_$LocationDetailResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

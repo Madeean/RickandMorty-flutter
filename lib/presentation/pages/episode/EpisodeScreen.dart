@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rick_and_morty_new/domain/episode/model/EpisodeDomainModel.dart';
+import 'package:rick_and_morty_new/presentation/navigation/RoutePage.dart';
 import 'package:rick_and_morty_new/presentation/pages/episode/EpisodeController.dart';
 import 'package:rick_and_morty_new/presentation/themes/Colors.dart';
 import 'package:rick_and_morty_new/presentation/widgets/InformationCard.dart';
@@ -37,8 +38,10 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                 borderRadius: BorderRadius.circular(12),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide:
-                    const BorderSide(color: CustomColors.biru, width: 2),
+                borderSide: const BorderSide(
+                  color: CustomColors.biru,
+                  width: 2,
+                ),
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
@@ -46,18 +49,19 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           const SizedBox(height: 12),
           Expanded(
             child: RefreshIndicator(
-                onRefresh: () async {
-                  controller.fetchAllEpisode();
-                },
-                child: _buildBody(dataEpisodeState, controller)),
+              onRefresh: () async {
+                controller.fetchAllEpisode();
+              },
+              child: _buildBody(dataEpisodeState, controller),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildBody(
-      RequestState<EpisodeDomainModel> state, EpisodeController controller) {
+  Widget _buildBody(RequestState<EpisodeDomainModel> state,
+      EpisodeController controller,) {
     return state.when(
       idle: () => const Center(child: Text("Silakan cari episode")),
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -77,6 +81,10 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                 date: episode.airDate,
                 description: episode.episode,
                 title: episode.name,
+                navigation: () {
+                  Navigator.pushNamed(context, RoutePage.episodeDetail.path,
+                      arguments: episode);
+                },
               );
             } else {
               return const Padding(

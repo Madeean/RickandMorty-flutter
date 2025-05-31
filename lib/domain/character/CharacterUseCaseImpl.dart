@@ -13,4 +13,10 @@ class CharacterUseCaseImpl implements CharacterUseCase {
       String name, String status, String species, String type, String gender, int page) {
     return repository.getAllCharacter(name, status, species, type, gender, page);
   }
+
+  @override
+  Stream<RequestState<List<CharacterDetailDomainModel>>> getCharacterById(
+      String id) {
+    return repository.getCharacterById(id);
+  }
 }

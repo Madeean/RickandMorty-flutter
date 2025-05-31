@@ -5,12 +5,14 @@ class InformationCard extends StatelessWidget {
   final String title;
   final String description;
   final String date;
+  void Function() navigation;
 
-  const InformationCard({
+  InformationCard({
     super.key,
     required this.title,
     required this.description,
     required this.date,
+    required this.navigation,
   });
 
   @override
@@ -55,7 +57,7 @@ class InformationCard extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    print("test");
+                    navigation();
                   },
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),

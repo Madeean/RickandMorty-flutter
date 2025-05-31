@@ -12,23 +12,27 @@ part of 'CharacterState.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$CharacterState {
   RequestState<CharacterDomainModel> get character =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CharacterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CharacterStateCopyWith<CharacterState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CharacterStateCopyWith<$Res> {
-  factory $CharacterStateCopyWith(
-          CharacterState value, $Res Function(CharacterState) then) =
-      _$CharacterStateCopyWithImpl<$Res, CharacterState>;
+  factory $CharacterStateCopyWith(CharacterState value,
+      $Res Function(CharacterState) then,) = _$CharacterStateCopyWithImpl<
+      $Res,
+      CharacterState>;
   @useResult
   $Res call({RequestState<CharacterDomainModel> character});
 
@@ -45,24 +49,31 @@ class _$CharacterStateCopyWithImpl<$Res, $Val extends CharacterState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CharacterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? character = null,
-  }) {
-    return _then(_value.copyWith(
-      character: null == character
-          ? _value.character
-          : character // ignore: cast_nullable_to_non_nullable
-              as RequestState<CharacterDomainModel>,
-    ) as $Val);
+  $Res call({Object? character = null}) {
+    return _then(
+      _value.copyWith(
+            character:
+                null == character
+                    ? _value.character
+                    : character // ignore: cast_nullable_to_non_nullable
+                        as RequestState<CharacterDomainModel>,
+          )
+          as $Val,
+    );
   }
 
+  /// Create a copy of CharacterState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RequestStateCopyWith<CharacterDomainModel, $Res> get character {
-    return $RequestStateCopyWith<CharacterDomainModel, $Res>(_value.character,
-        (value) {
+    return $RequestStateCopyWith<CharacterDomainModel, $Res>(_value.character, (
+      value,
+    ) {
       return _then(_value.copyWith(character: value) as $Val);
     });
   }
@@ -71,9 +82,10 @@ class _$CharacterStateCopyWithImpl<$Res, $Val extends CharacterState>
 /// @nodoc
 abstract class _$$CharacterStateImplCopyWith<$Res>
     implements $CharacterStateCopyWith<$Res> {
-  factory _$$CharacterStateImplCopyWith(_$CharacterStateImpl value,
-          $Res Function(_$CharacterStateImpl) then) =
-      __$$CharacterStateImplCopyWithImpl<$Res>;
+  factory _$$CharacterStateImplCopyWith(
+    _$CharacterStateImpl value,
+    $Res Function(_$CharacterStateImpl) then,
+  ) = __$$CharacterStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({RequestState<CharacterDomainModel> character});
@@ -86,21 +98,23 @@ abstract class _$$CharacterStateImplCopyWith<$Res>
 class __$$CharacterStateImplCopyWithImpl<$Res>
     extends _$CharacterStateCopyWithImpl<$Res, _$CharacterStateImpl>
     implements _$$CharacterStateImplCopyWith<$Res> {
-  __$$CharacterStateImplCopyWithImpl(
-      _$CharacterStateImpl _value, $Res Function(_$CharacterStateImpl) _then)
-      : super(_value, _then);
+  __$$CharacterStateImplCopyWithImpl(_$CharacterStateImpl _value,
+      $Res Function(_$CharacterStateImpl) _then,) : super(_value, _then);
 
+  /// Create a copy of CharacterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? character = null,
-  }) {
-    return _then(_$CharacterStateImpl(
-      character: null == character
-          ? _value.character
-          : character // ignore: cast_nullable_to_non_nullable
-              as RequestState<CharacterDomainModel>,
-    ));
+  $Res call({Object? character = null}) {
+    return _then(
+      _$CharacterStateImpl(
+        character:
+            null == character
+                ? _value.character
+                : character // ignore: cast_nullable_to_non_nullable
+                    as RequestState<CharacterDomainModel>,
+      ),
+    );
   }
 }
 
@@ -130,23 +144,30 @@ class _$CharacterStateImpl implements _CharacterState {
   @override
   int get hashCode => Object.hash(runtimeType, character);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CharacterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CharacterStateImplCopyWith<_$CharacterStateImpl> get copyWith =>
       __$$CharacterStateImplCopyWithImpl<_$CharacterStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _CharacterState implements CharacterState {
-  const factory _CharacterState(
-          {final RequestState<CharacterDomainModel> character}) =
-      _$CharacterStateImpl;
+  const factory _CharacterState({
+    final RequestState<CharacterDomainModel> character,
+  }) = _$CharacterStateImpl;
 
   @override
   RequestState<CharacterDomainModel> get character;
+
+  /// Create a copy of CharacterState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CharacterStateImplCopyWith<_$CharacterStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

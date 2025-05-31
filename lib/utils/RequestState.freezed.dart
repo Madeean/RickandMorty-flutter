@@ -12,7 +12,8 @@ part of 'RequestState.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$RequestState<T> {
@@ -22,16 +23,14 @@ mixin _$RequestState<T> {
     required TResult Function() loading,
     required TResult Function(T data) success,
     required TResult Function(T error) error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(T data)? success,
     TResult? Function(T error)? error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
@@ -39,24 +38,21 @@ mixin _$RequestState<T> {
     TResult Function(T data)? success,
     TResult Function(T error)? error,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Idle<T> value) idle,
     required TResult Function(Loading<T> value) loading,
     required TResult Function(Success<T> value) success,
     required TResult Function(ErrorState<T> value) error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Idle<T> value)? idle,
     TResult? Function(Loading<T> value)? loading,
     TResult? Function(Success<T> value)? success,
     TResult? Function(ErrorState<T> value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Idle<T> value)? idle,
@@ -64,15 +60,15 @@ mixin _$RequestState<T> {
     TResult Function(Success<T> value)? success,
     TResult Function(ErrorState<T> value)? error,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RequestStateCopyWith<T, $Res> {
   factory $RequestStateCopyWith(
-          RequestState<T> value, $Res Function(RequestState<T>) then) =
-      _$RequestStateCopyWithImpl<T, $Res, RequestState<T>>;
+    RequestState<T> value,
+    $Res Function(RequestState<T>) then,
+  ) = _$RequestStateCopyWithImpl<T, $Res, RequestState<T>>;
 }
 
 /// @nodoc
@@ -84,13 +80,17 @@ class _$RequestStateCopyWithImpl<T, $Res, $Val extends RequestState<T>>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RequestState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 abstract class _$$IdleImplCopyWith<T, $Res> {
   factory _$$IdleImplCopyWith(
-          _$IdleImpl<T> value, $Res Function(_$IdleImpl<T>) then) =
-      __$$IdleImplCopyWithImpl<T, $Res>;
+    _$IdleImpl<T> value,
+    $Res Function(_$IdleImpl<T>) then,
+  ) = __$$IdleImplCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
@@ -98,8 +98,12 @@ class __$$IdleImplCopyWithImpl<T, $Res>
     extends _$RequestStateCopyWithImpl<T, $Res, _$IdleImpl<T>>
     implements _$$IdleImplCopyWith<T, $Res> {
   __$$IdleImplCopyWithImpl(
-      _$IdleImpl<T> _value, $Res Function(_$IdleImpl<T>) _then)
-      : super(_value, _then);
+    _$IdleImpl<T> _value,
+    $Res Function(_$IdleImpl<T>) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of RequestState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -204,8 +208,9 @@ abstract class Idle<T> extends RequestState<T> {
 /// @nodoc
 abstract class _$$LoadingImplCopyWith<T, $Res> {
   factory _$$LoadingImplCopyWith(
-          _$LoadingImpl<T> value, $Res Function(_$LoadingImpl<T>) then) =
-      __$$LoadingImplCopyWithImpl<T, $Res>;
+    _$LoadingImpl<T> value,
+    $Res Function(_$LoadingImpl<T>) then,
+  ) = __$$LoadingImplCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
@@ -213,8 +218,12 @@ class __$$LoadingImplCopyWithImpl<T, $Res>
     extends _$RequestStateCopyWithImpl<T, $Res, _$LoadingImpl<T>>
     implements _$$LoadingImplCopyWith<T, $Res> {
   __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl<T> _value, $Res Function(_$LoadingImpl<T>) _then)
-      : super(_value, _then);
+    _$LoadingImpl<T> _value,
+    $Res Function(_$LoadingImpl<T>) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of RequestState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -319,8 +328,9 @@ abstract class Loading<T> extends RequestState<T> {
 /// @nodoc
 abstract class _$$SuccessImplCopyWith<T, $Res> {
   factory _$$SuccessImplCopyWith(
-          _$SuccessImpl<T> value, $Res Function(_$SuccessImpl<T>) then) =
-      __$$SuccessImplCopyWithImpl<T, $Res>;
+    _$SuccessImpl<T> value,
+    $Res Function(_$SuccessImpl<T>) then,
+  ) = __$$SuccessImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T data});
 }
@@ -330,20 +340,23 @@ class __$$SuccessImplCopyWithImpl<T, $Res>
     extends _$RequestStateCopyWithImpl<T, $Res, _$SuccessImpl<T>>
     implements _$$SuccessImplCopyWith<T, $Res> {
   __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl<T> _value, $Res Function(_$SuccessImpl<T>) _then)
-      : super(_value, _then);
+    _$SuccessImpl<T> _value,
+    $Res Function(_$SuccessImpl<T>) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of RequestState
+/// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_$SuccessImpl<T>(
-      freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as T,
-    ));
+  $Res call({Object? data = freezed}) {
+    return _then(
+      _$SuccessImpl<T>(
+        freezed == data
+            ? _value.data
+            : data // ignore: cast_nullable_to_non_nullable
+                as T,
+      ),
+    );
   }
 }
 
@@ -372,7 +385,9 @@ class _$SuccessImpl<T> extends Success<T> {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<T, _$SuccessImpl<T>> get copyWith =>
@@ -458,7 +473,10 @@ abstract class Success<T> extends RequestState<T> {
   const Success._() : super._();
 
   T get data;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequestState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<T, _$SuccessImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -466,8 +484,9 @@ abstract class Success<T> extends RequestState<T> {
 /// @nodoc
 abstract class _$$ErrorStateImplCopyWith<T, $Res> {
   factory _$$ErrorStateImplCopyWith(
-          _$ErrorStateImpl<T> value, $Res Function(_$ErrorStateImpl<T>) then) =
-      __$$ErrorStateImplCopyWithImpl<T, $Res>;
+    _$ErrorStateImpl<T> value,
+    $Res Function(_$ErrorStateImpl<T>) then,
+  ) = __$$ErrorStateImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T error});
 }
@@ -477,20 +496,23 @@ class __$$ErrorStateImplCopyWithImpl<T, $Res>
     extends _$RequestStateCopyWithImpl<T, $Res, _$ErrorStateImpl<T>>
     implements _$$ErrorStateImplCopyWith<T, $Res> {
   __$$ErrorStateImplCopyWithImpl(
-      _$ErrorStateImpl<T> _value, $Res Function(_$ErrorStateImpl<T>) _then)
-      : super(_value, _then);
+    _$ErrorStateImpl<T> _value,
+    $Res Function(_$ErrorStateImpl<T>) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of RequestState
+/// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? error = freezed,
-  }) {
-    return _then(_$ErrorStateImpl<T>(
-      freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as T,
-    ));
+  $Res call({Object? error = freezed}) {
+    return _then(
+      _$ErrorStateImpl<T>(
+        freezed == error
+            ? _value.error
+            : error // ignore: cast_nullable_to_non_nullable
+                as T,
+      ),
+    );
   }
 }
 
@@ -519,7 +541,9 @@ class _$ErrorStateImpl<T> extends ErrorState<T> {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorStateImplCopyWith<T, _$ErrorStateImpl<T>> get copyWith =>
@@ -605,7 +629,10 @@ abstract class ErrorState<T> extends RequestState<T> {
   const ErrorState._() : super._();
 
   T get error;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequestState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorStateImplCopyWith<T, _$ErrorStateImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
