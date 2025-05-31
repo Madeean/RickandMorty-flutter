@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rick_and_morty_new/domain/character/model/CharacterDomainModel.dart';
+import 'package:rick_and_morty_new/presentation/navigation/RoutePage.dart';
 import 'package:rick_and_morty_new/presentation/pages/character/CharacterController.dart';
 import 'package:rick_and_morty_new/presentation/themes/Colors.dart';
 import 'package:rick_and_morty_new/presentation/widgets/CharacterCard.dart';
@@ -233,7 +234,16 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
           itemBuilder: (context, index) {
             if (index < data.results.length) {
               final character = data.results[index];
-              return CharacterCard(character: character);
+              return CharacterCard(
+                character: character,
+                navigation: () {
+                  Navigator.pushNamed(
+                    context,
+                    RoutePage.characterDetail.path,
+                    arguments: character,
+                  );
+                },
+              );
             } else {
               return const Padding(
                 padding: EdgeInsets.symmetric(vertical: 16),

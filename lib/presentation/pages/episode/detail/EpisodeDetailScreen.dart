@@ -5,6 +5,7 @@ import 'package:rick_and_morty_new/domain/episode/model/EpisodeDomainModel.dart'
 import 'package:rick_and_morty_new/presentation/pages/episode/detail/EpisodeDetailController.dart';
 
 import '../../../../utils/RequestState.dart';
+import '../../../navigation/RoutePage.dart';
 import '../../../themes/Colors.dart';
 import '../../../widgets/CharacterCard.dart';
 
@@ -188,7 +189,16 @@ class _EpisodeDetailScreenState extends ConsumerState<EpisodeDetailScreen> {
           itemCount: data.length,
           itemBuilder: (context, index) {
             final character = data[index];
-            return CharacterCard(character: character);
+            return CharacterCard(
+              character: character,
+              navigation: () {
+                Navigator.pushNamed(
+                  context,
+                  RoutePage.characterDetail.path,
+                  arguments: character,
+                );
+              },
+            );
           },
         );
       },

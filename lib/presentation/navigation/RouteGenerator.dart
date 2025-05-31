@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty_new/domain/character/model/CharacterDomainModel.dart';
+import 'package:rick_and_morty_new/presentation/pages/character/detail/CharacterDetailScreen.dart';
 import 'package:rick_and_morty_new/presentation/pages/episode/detail/EpisodeDetailScreen.dart';
 
 import '../../domain/episode/model/EpisodeDomainModel.dart';
@@ -15,18 +17,31 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case '/about':
       return MaterialPageRoute(builder: (_) => const AboutThisAppScreen());
     case '/detail/episode':
-      // Ambil arguments dari settings
       final episode = settings.arguments as EpisodeDetailDomainModel?;
       if (episode != null) {
         return MaterialPageRoute(
           builder: (_) => EpisodeDetailScreen(episode: episode),
         );
       }
-      // Jika tidak ada arguments, tampilkan halaman error atau redirect
+
       return MaterialPageRoute(
         builder:
             (_) => const Scaffold(
               body: Center(child: Text('Error: No episode data provided')),
+            ),
+      );
+    case '/detail/character':
+      final character = settings.arguments as CharacterDetailDomainModel?;
+      if (character != null) {
+        return MaterialPageRoute(
+          builder: (_) => CharacterDetailScreen(character: character),
+        );
+      }
+
+      return MaterialPageRoute(
+        builder:
+            (_) => const Scaffold(
+              body: Center(child: Text('Error: No character data provided')),
             ),
       );
     default:

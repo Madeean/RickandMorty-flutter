@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 final RouteObserver<ModalRoute> routeObserver = RouteObserver<ModalRoute>();
 
-enum RoutePage {
-  splash,
-  home, about, episodeDetail }
+enum RoutePage { splash, home, about, episodeDetail, characterDetail }
 
 extension RoutePageExtension on RoutePage {
   String get path {
@@ -17,6 +15,8 @@ extension RoutePageExtension on RoutePage {
         return '/about';
       case RoutePage.episodeDetail:
         return '/detail/episode';
+      case RoutePage.characterDetail:
+        return '/detail/character';
     }
   }
 }
@@ -24,7 +24,7 @@ extension RoutePageExtension on RoutePage {
 class RoutePageHelper {
   static RoutePage fromPath(String? path) {
     return RoutePage.values.firstWhere(
-          (e) => e.path == path,
+      (e) => e.path == path,
       orElse: () => RoutePage.home,
     );
   }
