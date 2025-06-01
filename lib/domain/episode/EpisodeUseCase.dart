@@ -4,4 +4,8 @@ import '../../utils/RequestState.dart';
 
 abstract class EpisodeUseCase {
   Stream<RequestState<EpisodeDomainModel>> getAllEpisode(String name, int page);
+
+  Stream<RequestState<List<EpisodeDetailDomainModel>>> getEpisodeById(
+    String id,
+  );
 }

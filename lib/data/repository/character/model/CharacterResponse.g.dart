@@ -16,7 +16,7 @@ _$CharacterResponseImpl _$$CharacterResponseImplFromJson(
             (e) => CharacterDetailResponse.fromJson(e as Map<String, dynamic>),
           )
           .toList(),
-    );
+);
 
 Map<String, dynamic> _$$CharacterResponseImplToJson(
   _$CharacterResponseImpl instance,

@@ -12,6 +12,15 @@ class EpisodeResponse with _$EpisodeResponse {
 
   factory EpisodeResponse.fromJson(Map<String, dynamic> json) =>
       _$EpisodeResponseFromJson(json);
+
+  factory EpisodeResponse.fromListJson(List<dynamic> json) =>
+      EpisodeResponse(
+        message: null,
+        results: json
+            .map((item) =>
+            EpisodeDetailResponse.fromJson(item as Map<String, dynamic>))
+            .toList(),
+      );
 }
 
 @freezed
@@ -35,6 +44,10 @@ extension EpisodeMapper on EpisodeResponse {
       message: message ?? '',
       results: results?.map((e) => e.toDomain()).toList() ?? [],
     );
+  }
+
+  List<EpisodeDetailDomainModel> toListDetailDomain() {
+    return results?.map((e) => e.toDomain()).toList() ?? [];
   }
 }
 

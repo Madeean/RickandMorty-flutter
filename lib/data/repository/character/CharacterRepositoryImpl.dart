@@ -46,7 +46,7 @@ class CharacterRepositoryImpl implements CharacterRepository {
       request: () => network.dio.get('/character/$id'),
       fromJson: (json) {
         print("JSON Input: $json");
-        return CharacterResponse.fromJson(json);
+        return CharacterResponse.fromListJson(json);
       },
       toDomain: (res) => res.toListDetailDomain(),
       copyWithSuccessMessage: (domain) => domain,

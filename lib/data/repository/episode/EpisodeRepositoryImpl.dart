@@ -21,4 +21,18 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
           domain.copyWith(message: 'Success Get All Episode'),
     );
   }
+
+  @override
+  Stream<RequestState<List<EpisodeDetailDomainModel>>> getEpisodeById(
+      String id) {
+    return apiRequest<EpisodeResponse, List<EpisodeDetailDomainModel>>(
+      request: () => network.dio.get('/episode/$id'),
+      fromJson: (json) {
+        print("JSON Input: $json");
+        return EpisodeResponse.fromListJson(json);
+      },
+      toDomain: (res) => res.toListDetailDomain(),
+      copyWithSuccessMessage: (domain) => domain,
+    );
+  }
 }

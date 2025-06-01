@@ -16,7 +16,7 @@ _$EpisodeResponseImpl _$$EpisodeResponseImplFromJson(
             (e) => EpisodeDetailResponse.fromJson(e as Map<String, dynamic>),
           )
           .toList(),
-    );
+);
 
 Map<String, dynamic> _$$EpisodeResponseImplToJson(
   _$EpisodeResponseImpl instance,

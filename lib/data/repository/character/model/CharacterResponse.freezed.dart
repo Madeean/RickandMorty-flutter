@@ -37,10 +37,10 @@ mixin _$CharacterResponse {
 
 /// @nodoc
 abstract class $CharacterResponseCopyWith<$Res> {
-  factory $CharacterResponseCopyWith(CharacterResponse value,
-      $Res Function(CharacterResponse) then,) = _$CharacterResponseCopyWithImpl<
-      $Res,
-      CharacterResponse>;
+  factory $CharacterResponseCopyWith(
+    CharacterResponse value,
+    $Res Function(CharacterResponse) then,
+  ) = _$CharacterResponseCopyWithImpl<$Res, CharacterResponse>;
   @useResult
   $Res call({String? message, List<CharacterDetailResponse>? results});
 }

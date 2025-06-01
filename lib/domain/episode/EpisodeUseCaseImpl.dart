@@ -12,4 +12,10 @@ class EpisodeUseCaseImpl implements EpisodeUseCase {
   Stream<RequestState<EpisodeDomainModel>> getAllEpisode(String name, int page) {
     return repository.getAllEpisode(name, page);
   }
+
+  @override
+  Stream<RequestState<List<EpisodeDetailDomainModel>>> getEpisodeById(
+      String id) {
+    return repository.getEpisodeById(id);
+  }
 }

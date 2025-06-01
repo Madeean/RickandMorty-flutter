@@ -11,18 +11,8 @@ class CharacterResponse with _$CharacterResponse {
     List<CharacterDetailResponse>? results,
   }) = _CharacterResponse;
 
-  // factory CharacterResponse.fromJson(Map<String, dynamic> json) =>
-  //     _$CharacterResponseFromJson(json);
-
-  factory CharacterResponse.fromJson(dynamic json) {
-    if (json is List<dynamic>) {
-      return CharacterResponse.fromListJson(json);
-    }
-    if (json is Map<String, dynamic>) {
-      return _$CharacterResponseFromJson(json);
-    }
-    throw FormatException('Invalid JSON format: $json');
-  }
+  factory CharacterResponse.fromJson(Map<String, dynamic> json) =>
+      _$CharacterResponseFromJson(json);
 
   factory CharacterResponse.fromListJson(List<dynamic> json) =>
       CharacterResponse(

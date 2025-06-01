@@ -37,10 +37,10 @@ mixin _$EpisodeResponse {
 
 /// @nodoc
 abstract class $EpisodeResponseCopyWith<$Res> {
-  factory $EpisodeResponseCopyWith(EpisodeResponse value,
-      $Res Function(EpisodeResponse) then,) = _$EpisodeResponseCopyWithImpl<
-      $Res,
-      EpisodeResponse>;
+  factory $EpisodeResponseCopyWith(
+    EpisodeResponse value,
+    $Res Function(EpisodeResponse) then,
+  ) = _$EpisodeResponseCopyWithImpl<$Res, EpisodeResponse>;
   @useResult
   $Res call({String? message, List<EpisodeDetailResponse>? results});
 }
@@ -94,8 +94,10 @@ abstract class _$$EpisodeResponseImplCopyWith<$Res>
 class __$$EpisodeResponseImplCopyWithImpl<$Res>
     extends _$EpisodeResponseCopyWithImpl<$Res, _$EpisodeResponseImpl>
     implements _$$EpisodeResponseImplCopyWith<$Res> {
-  __$$EpisodeResponseImplCopyWithImpl(_$EpisodeResponseImpl _value,
-      $Res Function(_$EpisodeResponseImpl) _then,) : super(_value, _then);
+  __$$EpisodeResponseImplCopyWithImpl(
+    _$EpisodeResponseImpl _value,
+    $Res Function(_$EpisodeResponseImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of EpisodeResponse
   /// with the given fields replaced by the non-null parameter values.

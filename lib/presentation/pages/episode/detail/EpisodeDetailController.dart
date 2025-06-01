@@ -57,10 +57,10 @@ class EpisodeDetailController
 
   void initData() {
     if (episode.characterList.isNotEmpty) {
-      final ids = episode.characterList
-          .map((url) => url.split('/').last)
-          .where((id) => id.isNotEmpty)
-          .join(',');
+      final ids =
+          '${episode.characterList.map((url) => url.split('/').last)
+          .where((id) => id.isNotEmpty).join(',')},';
+
       if (ids.isNotEmpty) {
         fetchCharacter(ids);
       }
